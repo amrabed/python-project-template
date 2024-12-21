@@ -1,0 +1,47 @@
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120
+
+[tool.flake8]
+max-line-length = 120
+extend-ignore = [
+    "E203",  # whitespace before ':' (Black formatting)
+    "W503",  # line break before binary operator (Black formatting)
+]
+
+[tool.coverage.run]
+branch = true
+source = ["project"]
+
+[tool.coverage.report]
+omit = ["tests/*"]
+# fail_under = 90
+
+[tool.poetry]
+name = "project"
+version = "0.1.0"
+description = "Python Project"
+authors = ["Amr Abed <amrabed>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.scripts]
+app = "project.app:main"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+black = "^24.10.0"
+isort = "^5.13.2"
+coverage = "^7.6.9"
+flake8 = "^7.1.1"
+pre-commit = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

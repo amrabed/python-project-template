@@ -1,0 +1,21 @@
+name: Format, Lint, and Test
+
+on:
+  push:
+  workflow_call:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      - name: Install dependencies
+        run: make poetry install
+      - name: Format and lint
+        run: make lint
+      - name: Run tests
+        run: make test
