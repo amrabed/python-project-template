@@ -1,5 +1,5 @@
-# Python Project Template
-A Python Project template that comes out of the box with configuration for:
+# Python Project Template 
+A Python project template that comes out of the box with configuration for:
 - Packaging and dependency management using [Poetry](https://python-poetry.org)
 - Testing using [pytest](https://pytest.org)
 - Code coverage using [coverage](https://coverage.readthedocs.io)
@@ -9,32 +9,54 @@ A Python Project template that comes out of the box with configuration for:
 - Pre-commit validations using [pre-commit](https://pre-commit.com)
 - Workflow automation using [GitHub Actions](https://github.com/features/actions)
 
-## Prerquisites
-- Python 3.12+ (You can update the [`pyproject.toml`](pyproject.toml#L17) for lower versions)
+## How to use
+Click this button to create a new repository for your project, then clone the new repository. Enjoy!
+
+[![Use this template]( https://img.shields.io/badge/Use%20this%20template-238636?style=for-the-badge)](https://github.com/amrabed/python/generate)
+
+
+## Prerequisites
+- Python 3.12+ (You can update the [`pyproject.toml`](pyproject.toml#L35) for lower versions)
 - Pipx (*optional* - used to install Poetry if not already installed)
 
-## Usage
-- Click the **Use the template** button to use this template to create your Python project
-- Clone your newly created project to your local
+## Make commands
 
 ### Install Poetry
-Run `make poetry` to install poetry if not installed (requires pipx)
+To install poetry if not installed (requires pipx), run:
+```bash
+make poetry
+```
 
 ### Install dependencies
-Run `make install` to install the project dependencies defined in the [pyproject.toml](pyproject.toml) file
+To install the project dependencies defined in the [pyproject.toml](pyproject.toml) file, run:
+```bash
+make install
+```
 
-### Install pre-commit hook
-Run `make precommit` to install the pre-commit hook for the project to format and lint your code automatically before commiting to GitHub
+### Install pre-commit hooks
+To install the pre-commit hooks for the project to format and lint your code automatically before commiting, run: 
+```bash
+make precommit
+```
 
 ### Format and Lint code
-Run `make lint` to format and lint project code
+To format and lint project code, run:
+```bash
+make lint
+```
 
 ### Run tests with coverage
-Run `make test` to run the tests defined under the [tests](tests) folder and show coverage report
+To run the unit tests defined under the [tests](tests) folder and show coverage report, run:
+```bash
+make test
+```
 
 ### Run main script
-A script with the name `app` is defined in the [pyproject.toml](pyproject.toml#L14) file to run the main function as a shell script. 
-Run `make run` to run the main script
+To run the main `app` script (defined in the [pyproject.toml](pyproject.toml#L32) file to run the main function as a shell script), run:
+```bash
+make run
+```
+
 
 ## Project Structure
 
@@ -43,7 +65,7 @@ Run `make run` to run the main script
 │   ├── FUNDING.md           # GitHub funding
 │   └── workflows            # Github Actions Workflows
 │       └── check.yml        # Workflow to validate code on push
-├── .gitignore               # Git-ignored file list (duh)
+├── .gitignore               # Git-ignored file list
 ├── .pre-commit-config.yaml  # Pre-commit configuration file
 ├── LICENSE                  # Project license
 ├── Makefile                 # Make commands
