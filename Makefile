@@ -1,4 +1,21 @@
 
+NAME ?= project
+DESCRIPTION ?= Python Project Template
+AUTHOR ?= Amr Abed
+EMAIL ?= amrabed
+GITHUB ?= amrabed
+
+rename: # Rename project (run once)
+	@if [ -d project ]; then mv project ${NAME}; fi
+	@sed -i '' 's/^source = \[.*\]/source = \["${NAME}"\]/' pyproject.toml
+	@sed -i '' 's/^app = "project\.app:main"/app = "${NAME}\.app:main"/' pyproject.toml
+	@sed -i '' 's/^name = ".*"/name = "${NAME}"/' pyproject.toml
+	@sed -i '' 's/^description = ".*"/description = "${DESCRIPTION}"/' pyproject.toml
+	@sed -i '' 's/^authors = \[.*\]/authors = \["${AUTHOR} <${EMAIL}>"\]/' pyproject.toml
+	@sed -i '' 's/^# .*/# ${DESCRIPTION}/' README.md
+	@sed -i '' 's/^github: \[.*\]/github: \[${GITHUB}\]/' .github/FUNDING.yml
+	@sed -i '' 's/^patreon: .*/patreon: # Put your Patreon username here/' .github/FUNDING.yml
+
 poetry:  # Install Poetry
 	pipx install -qf poetry
 

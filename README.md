@@ -15,6 +15,21 @@ Click this button to create a new repository for your project, then clone the ne
 
 [![Use this template]( https://img.shields.io/badge/Use%20this%20template-238636?style=for-the-badge)](https://github.com/amrabed/python/generate)
 
+### Rename the project
+After cloning the repository, rename the project by running:
+```bash
+make rename NAME="" DESCRIPTION="" AUTHOR="" EMAIL="" GITHUB=""
+```
+Pass the following parameters:
+
+Parameter | Description
+--- | ---
+`NAME` | Project new name
+`DESCRIPTION` | Project short description
+`AUTHOR` | Author name
+`EMAIL`| Author email 
+`GITHUB`| GitHub username (for GitHub funding)
+
 
 ## Prerequisites
 - Python 3.12+ (You can update the [`pyproject.toml`](pyproject.toml#L35) for lower versions)
