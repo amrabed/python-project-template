@@ -198,6 +198,22 @@ pycodestyle = ">=2.12.0,<2.13.0"
 pyflakes = ">=3.2.0,<3.3.0"
 
 [[package]]
+name = "flake8-pyproject"
+version = "1.2.3"
+description = "Flake8 plug-in loading the configuration from pyproject.toml"
+optional = false
+python-versions = ">= 3.6"
+files = [
+    {file = "flake8_pyproject-1.2.3-py3-none-any.whl", hash = "sha256:6249fe53545205af5e76837644dc80b4c10037e73a0e5db87ff562d75fb5bd4a"},
+]
+
+[package.dependencies]
+Flake8 = ">=5"
+
+[package.extras]
+dev = ["pyTest", "pyTest-cov"]
+
+[[package]]
 name = "identify"
 version = "2.6.3"
 description = "File identification library for Python"
@@ -467,4 +483,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "3009ea1a6b11632e0b1b28520e4ccd424504051b1b7f002d82684c138d12dc29"
+content-hash = "d067ebc5de15f3eb21dd46fb92585279f21e9b96dccb18f1eb0ee4061f63e2f8"
