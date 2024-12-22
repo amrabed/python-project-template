@@ -20,7 +20,7 @@ Click this button to create a new repository for your project, then clone the ne
 - Python 3.12+ (You can update the [`pyproject.toml`](pyproject.toml#L35) for lower versions)
 - Pipx (*optional* - used to install Poetry if not already installed)
 
-## Make commands
+## Setup
 
 ### Install Poetry
 To install poetry, if not installed (requires pipx), run:
