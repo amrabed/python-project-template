@@ -1,8 +1,9 @@
 
-SOURCE ?= project
-
 poetry:  # Install Poetry
 	pipx install -qf poetry
+
+venv:
+	poetry shell
 
 install: # Install dependencies and project
 	poetry install
@@ -13,6 +14,8 @@ update: # Update dependencies
 precommit: # Install pre-commit hooks
 	poetry run pre-commit autoupdate
 	poetry run pre-commit install
+
+pre-commit: precommit
 
 lint:
 	poetry run black .
@@ -26,5 +29,4 @@ coverage:
 
 test: coverage
 
-run:
-	poetry run app
+all: poetry venv install precommit lint test
