@@ -1,8 +1,10 @@
 name: Format, Lint, and Test
 
 on:
-  push:
   workflow_call:
+  push:
+    paths:
+      - "!docs/**"
 
 jobs:
   check:

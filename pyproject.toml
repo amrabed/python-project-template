@@ -27,10 +27,10 @@ reportMissingImports = "error"
 [tool.poetry]
 name = "project"
 version = "0.1.0"
-description = "Python Project"
+description = "Python Project Template"
 authors = ["Amr Abed <amrabed>"]
 license = "MIT"
-readme = "README.md"
+readme = "docs/README.md"
 
 [tool.poetry.scripts]
 app = "project.app:main"
@@ -48,6 +48,9 @@ flake8 = "^7.1.1"
 pre-commit = "^4.0.1"
 flake8-pyproject = "^1.2.3"
 pyright = "^1.1.391"
+mkdocs = "^1.6.1"
+mkdocstrings = { version = "^0.27.0", extras=["python"] }
+mkdocs-material = "^9.5.49"
 
 [build-system]
 requires = ["poetry-core"]

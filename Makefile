@@ -7,6 +7,9 @@ GITHUB ?= amrabed
 
 rename: # Rename project (run once)
 	@if [ -d project ]; then mv project ${NAME}; fi
+	@sed -i '' 's/^::: project\.app/::: ${NAME}\.app/' docs/reference/app.md
+	@sed -i '' 's/^repo_name: "Project"/repo_name: "${NAME}"/' docs/mkdocs.yml
+	@sed -i '' 's/^repo_url: ".*"/repo_url: "https:\/\/github.com\/${GITHUB}\/${NAME}"/' docs/mkdocs.yml
 	@sed -i '' 's/^source = \[.*\]/source = \["${NAME}"\]/' pyproject.toml
 	@sed -i '' 's/^app = "project\.app:main"/app = "${NAME}\.app:main"/' pyproject.toml
 	@sed -i '' 's/^name = ".*"/name = "${NAME}"/' pyproject.toml
@@ -46,5 +49,12 @@ coverage:
 	poetry run coverage xml
 
 test: coverage
+
+.PHONY: docs
+docs: # Build documentation site
+	poetry run mkdocs build
+
+local: # Serve documentation on a local server
+	poetry run mkdocs serve
 
 all: poetry install precommit lint test venv

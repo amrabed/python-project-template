@@ -1,5 +1,6 @@
 # Python Project Template 
 A Python project template that comes out of the box with configuration for:
+
 - Packaging and dependency management using [Poetry](https://python-poetry.org)
 - Command Line Interface (CLI) using [click](https://click.palletsprojects.com)
 - Testing using [pytest](https://pytest.org)
@@ -12,6 +13,7 @@ A Python project template that comes out of the box with configuration for:
 - Workflow automation using [GitHub Actions](https://github.com/features/actions)
 - Automated dependency update using [Dependabot](https://docs.github.com/en/code-security/dependabot)
 - Dockerized development environment using [Dev containers](https://code.visualstudio.com/docs/devcontainers/containers)
+- Automatic documentation from code using [mkdocs](https://www.mkdocs.org) and [mkdocstrings](https://mkdocstrings.github.io)
 - App container using [Docker](https://docker.com)
 
 ## How to use
@@ -40,7 +42,7 @@ Parameter | Description
 - Docker
 
 ### Local environment
-- Python 3.12+ (You can update the [`pyproject.toml`](pyproject.toml#L39) for lower versions)
+- Python 3.12+ (You can update the [`pyproject.toml`](../pyproject.toml#L39) for lower versions)
 - Pipx (*optional* - used to install Poetry if not already installed)
 
 ## Setup
@@ -52,7 +54,7 @@ make poetry
 ```
 
 ### Install / Update dependencies
-To install the project dependencies defined in the [pyproject.toml](pyproject.toml) file, run:
+To install the project dependencies defined in the [pyproject.toml](../pyproject.toml) file, run:
 ```bash
 make install
 ```
@@ -81,13 +83,13 @@ make lint
 ```
 
 ### Run tests with coverage
-To run the unit tests defined under the [tests](tests) folder and show coverage report, run:
+To run the unit tests defined under the [tests](../tests/) folder and show coverage report, run:
 ```bash
 make test
 ```
 
 ## Running the project
-A Poetry script, with the name `app`, is defined in the [pyproject.toml](pyproject.toml#L36) file, to let you to run the project as a shell command.
+A Poetry script, with the name `app`, is defined in the [pyproject.toml](../pyproject.toml#L36) file, to let you to run the project as a shell command.
 
 ### Local / Dev container
 > Make sure to activate the virtual environment using `make venv` to be able to run `app` without `poetry run`
@@ -109,6 +111,15 @@ To run in a Docker container, use:
 docker compose run app -h
 ```
 
+## Generating documentation
+To generate the project documentation, run:
+```bash
+make docs
+```
+To serve the documentation on a local server, run:
+```bash
+make local
+```
 
 ## Project Structure
 
@@ -131,8 +142,12 @@ docker compose run app -h
 ├── Dockerfile               # App container Dockerfile
 ├── LICENSE                  # Project license
 ├── Makefile                 # Make commands
-├── README.md                # Read-me file
 ├── pyproject.toml           # Configuration file for different tools
+├── docs                     # Documentaion files
+|   ├── mkdocs.yml           # mkdocs configuration file
+|   ├── README.md            # Read-me file & Documentation home page
+│   └── reference            # Reference section
+│       └── app.md           # App reference page
 ├── project                  # Main project folder
 │   ├── __init__.py          # Init file of the main package
 │   └── app.py               # Main Python file of the project
