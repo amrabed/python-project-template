@@ -11,6 +11,7 @@ A Python project template that comes out of the box with configuration for:
 - Workflow automation using [GitHub Actions](https://github.com/features/actions)
 - Automated dependency update using [Dependabot](https://docs.github.com/en/code-security/dependabot)
 - Dockerized development environment using [Dev containers](https://code.visualstudio.com/docs/devcontainers/containers)
+- App container using [Docker](https://docker.com)
 
 ## How to use
 Click this button to create a new repository for your project, then clone the new repository. Enjoy!
@@ -87,7 +88,8 @@ make test
 ## Running the project
 A Poetry script, with the name `app`, is defined in the [pyproject.toml](pyproject.toml#L32) file, to let you to run the project as a shell command.
 
-> Make sre to activate the virtual environment using `make venv` to be able to run `app` without `poetry run`
+### Local / Dev container
+> Make sure to activate the virtual environment using `make venv` to be able to run `app` without `poetry run`
 
 Try running `app -h` or `app --help` to get the help message of your app:
 ```bash
@@ -100,12 +102,18 @@ Options:
   -h, --help       Show this message and exit.
 ```
 
+### Docker
+To run in a Docker container, use:
+```bash
+docker compose run app -h
+```
+
 
 ## Project Structure
 
 ```
 ├── .devcontainer            # Dev container files
-│   ├── devcontainer.json    # Dev container confgiuration
+│   ├── devcontainer.json    # Dev container configuration
 │   └── Dockerfile           # Dev container Dockerfile
 ├── .github                  # Github files
 │   ├── dependabot.yaml      # Dependabot configuration
@@ -117,6 +125,9 @@ Options:
 ├── .flake8                  # flake8 configuration file
 ├── .vscode                  # VS code files
 │   └── settings.json        # VS code settings
+├── .dockerignore            # Docker-ignored file list
+├── compose.yml              # Docker-compose file
+├── Dockerfile               # App container Dockerfile
 ├── LICENSE                  # Project license
 ├── Makefile                 # Make commands
 ├── README.md                # Read-me file

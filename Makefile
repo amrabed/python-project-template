@@ -17,7 +17,7 @@ rename: # Rename project (run once)
 	@sed -i '' 's/^patreon: .*/patreon: # Put your Patreon username here/' .github/FUNDING.yml
 
 poetry:  # Install Poetry
-	pipx install -qf poetry
+	pipx install -f poetry
 
 venv:
 	poetry shell
