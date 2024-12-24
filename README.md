@@ -6,6 +6,7 @@ A Python project template that comes out of the box with configuration for:
 - Code coverage using [coverage](https://coverage.readthedocs.io)
 - Fomatting using [black](https://black.readthedocs.io) 
 - Import sorting using [isort](https://pycqa.github.io/isort)
+- Type checking using [pyright](https://microsoft.github.io/pyright)
 - Linting usig [flake8](https://flake8.pycqa.org)
 - Pre-commit validations using [pre-commit](https://pre-commit.com)
 - Workflow automation using [GitHub Actions](https://github.com/features/actions)
@@ -39,7 +40,7 @@ Parameter | Description
 - Docker
 
 ### Local environment
-- Python 3.12+ (You can update the [`pyproject.toml`](pyproject.toml#L35) for lower versions)
+- Python 3.12+ (You can update the [`pyproject.toml`](pyproject.toml#L39) for lower versions)
 - Pipx (*optional* - used to install Poetry if not already installed)
 
 ## Setup
@@ -86,7 +87,7 @@ make test
 ```
 
 ## Running the project
-A Poetry script, with the name `app`, is defined in the [pyproject.toml](pyproject.toml#L32) file, to let you to run the project as a shell command.
+A Poetry script, with the name `app`, is defined in the [pyproject.toml](pyproject.toml#L36) file, to let you to run the project as a shell command.
 
 ### Local / Dev container
 > Make sure to activate the virtual environment using `make venv` to be able to run `app` without `poetry run`

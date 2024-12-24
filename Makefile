@@ -37,6 +37,7 @@ pre-commit: precommit
 lint:
 	poetry run black .
 	poetry run isort .
+	poetry run pyright .
 	poetry run flake8 .
 
 coverage:

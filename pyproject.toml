@@ -20,6 +20,10 @@ source = ["project"]
 omit = ["tests/*"]
 # fail_under = 90
 
+[tool.pyright]
+exclude = ["**/__pycache__", "**/.pytest_cache"]
+reportMissingImports = "error"
+
 [tool.poetry]
 name = "project"
 version = "0.1.0"
@@ -43,6 +47,7 @@ coverage = "^7.6.9"
 flake8 = "^7.1.1"
 pre-commit = "^4.0.1"
 flake8-pyproject = "^1.2.3"
+pyright = "^1.1.391"
 
 [build-system]
 requires = ["poetry-core"]
