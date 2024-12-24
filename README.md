@@ -9,6 +9,8 @@ A Python project template that comes out of the box with configuration for:
 - Linting usig [flake8](https://flake8.pycqa.org)
 - Pre-commit validations using [pre-commit](https://pre-commit.com)
 - Workflow automation using [GitHub Actions](https://github.com/features/actions)
+- Automated dependency update using [Dependabot](https://docs.github.com/en/code-security/dependabot)
+- Dockerized development environment using [Dev containers](https://code.visualstudio.com/docs/devcontainers/containers)
 
 ## How to use
 Click this button to create a new repository for your project, then clone the new repository. Enjoy!
@@ -32,6 +34,10 @@ Parameter | Description
 
 
 ## Prerequisites
+### Dev container
+- Docker
+
+### Local environment
 - Python 3.12+ (You can update the [`pyproject.toml`](pyproject.toml#L35) for lower versions)
 - Pipx (*optional* - used to install Poetry if not already installed)
 
@@ -98,13 +104,19 @@ Options:
 ## Project Structure
 
 ```
+├── .devcontainer            # Dev container files
+│   ├── devcontainer.json    # Dev container confgiuration
+│   └── Dockerfile           # Dev container Dockerfile
 ├── .github                  # Github files
+│   ├── dependabot.yaml      # Dependabot configuration
 │   ├── FUNDING.md           # GitHub funding
 │   └── workflows            # Github Actions Workflows
 │       └── check.yml        # Workflow to validate code on push
 ├── .gitignore               # Git-ignored file list
 ├── .pre-commit-config.yaml  # Pre-commit configuration file
 ├── .flake8                  # flake8 configuration file
+├── .vscode                  # VS code files
+│   └── settings.json        # VS code settings
 ├── LICENSE                  # Project license
 ├── Makefile                 # Make commands
 ├── README.md                # Read-me file

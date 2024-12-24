@@ -46,4 +46,4 @@ coverage:
 
 test: coverage
 
-all: poetry venv install precommit lint test
+all: poetry install precommit lint test venv
