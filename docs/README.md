@@ -17,6 +17,19 @@ A Python project template that comes out of the box with configuration for:
 - Documentation auto-deployment to [GiHub Pages](https://pages.github.com)
 - App container using [Docker](https://docker.com)
 
+
+### GitHub files
+The repository also comes pre-loaded with these GitHub files:
+
+- Pull request template
+- Issue templates
+  - Bug report
+  - Feature request
+  - Question
+- Contributing guidelines
+- Funding file
+- MIT License
+
 ## How to use
 Click this button to create a new repository for your project, then clone the new repository. Enjoy!
 
