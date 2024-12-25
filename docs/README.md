@@ -28,6 +28,7 @@ The repository also comes pre-loaded with these GitHub files:
   - Question
 - Contributing guidelines
 - Funding file
+- Code owners
 - MIT License
 
 ## How to use
@@ -148,6 +149,7 @@ make local
 ├── .github                  # Github files
 │   ├── dependabot.yaml      # Dependabot configuration
 │   ├── FUNDING.md           # GitHub funding
+│   ├── CODEOWNERS           # Code owners
 │   └── workflows            # Github Actions Workflows
 |       ├── check.yml        # Workflow to validate code on push
 │       └── docs.yml         # Woukflow to publish documentation
@@ -165,6 +167,7 @@ make local
 ├── docs                     # Documentaion files
 |   ├── mkdocs.yml           # mkdocs configuration file
 |   ├── README.md            # Read-me file & Documentation home page
+|   ├── CONTRIBUTING.md      # Contributing guidelines
 │   └── reference            # Reference section
 │       └── app.md           # App reference page
 ├── project                  # Main project folder
