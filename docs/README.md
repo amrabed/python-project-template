@@ -117,6 +117,10 @@ To generate and publish the project documentation to GitHub pages, run:
 ```bash
 make docs
 ```
+That pushes the new documentation to the gh-pages branch. 
+Make sure GitHub Pages is enableed in your repository settings and using the gh-pages branch for the documentation to be publicly available.
+
+### Local
 To serve the documentation on a local server, run:
 ```bash
 make local
