@@ -112,7 +112,7 @@ docker compose run app -h
 ```
 
 ## Generating documentation
-To generate the project documentation, run:
+To publish the project documentation to GitHub pages, run:
 ```bash
 make docs
 ```
