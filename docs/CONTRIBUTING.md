@@ -6,7 +6,7 @@ First off, thanks for taking the time to contribute! ❤️
 All types of contributions are encouraged and valued. Here are some ways you can contribute to the project:
 
 - [Report a bug](#reporting-bugs)
-- [Request a feature]((#requesting-features))
+- [Request a feature](#requesting-features)
 - [Ask a question](#asking-questions)
 - [Contribute to the code](#contributing-to-the-code)
 - Help with documentation
