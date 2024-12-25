@@ -3,9 +3,9 @@ from click import command, option
 
 @command(context_settings={"help_option_names": ["-h", "--help"]}, help="Say hello")
 @option("-n", "--name", default="World", help="Name", show_default=True)
-def hello(name: str = "World"):
+def main(name: str = "World"):
     """
-    Say hello to the given name
+    Say hello to the given name.
 
     Args:
       name: the name to be greeted
@@ -14,4 +14,4 @@ def hello(name: str = "World"):
 
 
 if __name__ == "__main__":
-    hello()
+    main()
