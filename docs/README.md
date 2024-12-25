@@ -143,38 +143,43 @@ make local
 ## Project Structure
 
 ```
-├── .devcontainer            # Dev container files
-│   ├── devcontainer.json    # Dev container configuration
-│   └── Dockerfile           # Dev container Dockerfile
-├── .github                  # Github files
-│   ├── dependabot.yaml      # Dependabot configuration
-│   ├── FUNDING.md           # GitHub funding
-│   ├── CODEOWNERS           # Code owners
-│   └── workflows            # Github Actions Workflows
-|       ├── check.yml        # Workflow to validate code on push
-│       └── docs.yml         # Woukflow to publish documentation
-├── .gitignore               # Git-ignored file list
-├── .pre-commit-config.yaml  # Pre-commit configuration file
-├── .flake8                  # flake8 configuration file
-├── .vscode                  # VS code files
-│   └── settings.json        # VS code settings
-├── .dockerignore            # Docker-ignored file list
-├── compose.yml              # Docker-compose file
-├── Dockerfile               # App container Dockerfile
-├── LICENSE                  # Project license
-├── Makefile                 # Make commands
-├── pyproject.toml           # Configuration file for different tools
-├── docs                     # Documentaion files
-|   ├── mkdocs.yml           # mkdocs configuration file
-|   ├── README.md            # Read-me file & Documentation home page
-|   ├── CONTRIBUTING.md      # Contributing guidelines
-│   └── reference            # Reference section
-│       └── app.md           # App reference page
-├── project                  # Main project folder
-│   ├── __init__.py          # Init file of the main package
-│   └── app.py               # Main Python file of the project
-└── tests                    # Unit tests for the project
-    ├── conftest.py          # Pytest configuration, and fixtures, and hooks
-    ├── __init__.py          # Init file fo the test package
-    └── test_app.py          # Sample test file
+├── .devcontainer                   # Dev container folder
+│   ├── devcontainer.json           # Dev container configuration
+│   └── Dockerfile                  # Dev container Dockerfile
+├── .github                         # Github folder
+│   ├── dependabot.yaml             # Dependabot configuration
+│   ├── CODEOWNERS                  # Code owners
+│   ├── FUNDING.md                  # GitHub funding
+│   ├── PULL_REQUEST_TEMPLATE.md    # Pull request template
+│   ├── ISSUE_TEMPLATE              # Issue templates
+│   │   ├── bug.md                  # Bug report template
+│   │   ├── feature.md              # Feature request template
+│   │   └── question.md             # Question template
+│   └── workflows                   # Github Actions Workflows
+│       ├── check.yml               # Workflow to validate code on push
+│       └── docs.yml                # Woukflow to publish documentation
+├── .gitignore                      # Git-ignored file list
+├── .pre-commit-config.yaml         # Pre-commit configuration file
+├── .flake8                         # flake8 configuration file
+├── .vscode                         # VS code folder
+│   └── settings.json               # VS code settings
+├── .dockerignore                   # Docker-ignored file list
+├── compose.yml                     # Docker-compose file
+├── Dockerfile                      # App container Dockerfile
+├── LICENSE                         # Project license
+├── Makefile                        # Make commands
+├── pyproject.toml                  # Configuration file for different tools
+├── docs                            # Documentaion folder
+│   ├── mkdocs.yml                  # mkdocs configuration file
+│   ├── README.md                   # Read-me file & Documentation home page
+│   ├── CONTRIBUTING.md             # Contributing guidelines
+│   └── reference                   # Reference section
+│       └── app.md                  # App reference page
+├── project                         # Main project folder
+│   ├── __init__.py                 # Init file of the main package
+│   └── app.py                      # Main Python file of the project
+└── tests                           # Test folder
+    ├── __init__.py                 # Init file fo the test package
+    ├── conftest.py                 # Pytest configuration, and fixtures, and hooks
+    └── test_app.py                 # Sample test file
 ```
