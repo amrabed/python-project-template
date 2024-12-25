@@ -23,7 +23,9 @@ theme:
   - toc.follow
 
 nav:
-  - Overview: README.md
+  - Overview:
+    - Overview: README.md
+    - Contributing: CONTRIBUTING.md
   - Reference:
     - App: reference/app.md
 
