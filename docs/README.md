@@ -14,6 +14,7 @@ A Python project template that comes out of the box with configuration for:
 - Automated dependency update using [Dependabot](https://docs.github.com/en/code-security/dependabot)
 - Dockerized development environment using [Dev containers](https://code.visualstudio.com/docs/devcontainers/containers)
 - Automatic documentation from code using [mkdocs](https://www.mkdocs.org) and [mkdocstrings](https://mkdocstrings.github.io)
+- Documentation auto-deployment to [GiHub Pages](https://pages.github.com)
 - App container using [Docker](https://docker.com)
 
 ## How to use
@@ -112,7 +113,7 @@ docker compose run app -h
 ```
 
 ## Generating documentation
-To publish the project documentation to GitHub pages, run:
+To generate and publish the project documentation to GitHub pages, run:
 ```bash
 make docs
 ```
@@ -131,7 +132,8 @@ make local
 │   ├── dependabot.yaml      # Dependabot configuration
 │   ├── FUNDING.md           # GitHub funding
 │   └── workflows            # Github Actions Workflows
-│       └── check.yml        # Workflow to validate code on push
+|       ├── check.yml        # Workflow to validate code on push
+│       └── docs.yml         # Woukflow to publish documentation
 ├── .gitignore               # Git-ignored file list
 ├── .pre-commit-config.yaml  # Pre-commit configuration file
 ├── .flake8                  # flake8 configuration file

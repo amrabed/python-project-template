@@ -2,8 +2,8 @@ name: Publish documentation to GitHub Pages
 on:
   workflow_call:
   push:
-    # branches:
-    #   - main
+    branches:
+      - main
     paths:
         - "docs/**"
         - mkdocs.yml
@@ -21,7 +21,7 @@ jobs:
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
-          git config user.email github-actions[bot]@github.com
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
       - uses: actions/cache@v4
         with:
@@ -29,5 +29,7 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material mkdocstrings[python]
-      - run: mkdocs gh-deploy --force
+      - name: Install dependencies
+        run: pip install mkdocs-material mkdocstrings[python]
+      - name: Publish to GitHub Pages
+        run: mkdocs gh-deploy --force
