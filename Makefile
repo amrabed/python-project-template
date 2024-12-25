@@ -18,7 +18,7 @@ project: # Rename project (run once)
 	@sed -i '' 's/^description = ".*"/description = "${DESCRIPTION}"/' pyproject.toml
 	@sed -i '' 's/^authors = \[.*\]/authors = \["${AUTHOR} <${EMAIL}>"\]/' pyproject.toml
 	@sed -i '' 's/^# .*/# ${DESCRIPTION}/' docs/README.md
-	@sed -i '' 's/\*\* @.*/** @${GITHUB}/' .github/CODEOWNERS
+	@sed -i '' 's/@.*/@${GITHUB}/' .github/CODEOWNERS
 	@sed -i '' 's/^github: \[.*\]/github: \[${GITHUB}\]/' .github/FUNDING.yml
 	@sed -i '' 's/^patreon: .*/patreon: # Put your Patreon username here/' .github/FUNDING.yml
 
