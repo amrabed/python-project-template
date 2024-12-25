@@ -58,7 +58,7 @@ make lint test
 ```bash
 git add .
 git commit -m "My new feature"  # use descriptive commit message
-git push origin my-new-feature-branch
+git push origin my-new-feature
 ```
 - Create a pull request, and request review from the team
 
