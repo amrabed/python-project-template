@@ -36,34 +36,32 @@ You'll need the following prerequisites:
 
 ### How to contribute
 
-1. Fork the repository on GitHub 
-2. Clone your fork locally.
-3. Install the project dependencies:
+- Fork the repository on GitHub 
+- Clone your fork locally.
+- Install the project dependencies:
 
 ```bash
 make poetry install pre-commit
 ```
-4. Create a new branch (wit a descriptive name) for your changes:
+- Create a new branch (with a descriptive name) for your changes:
 
 ```bash
 git checkout -b my-new-feature  # use descriptive branch name
 ```
-5. Make your code changes
-
-6. Run tests and linting locally to make sure everything is working as expected.
+- Make your code changes
+- Run tests and linting locally to make sure everything is working as expected.
 
 ```bash
 make lint test
 ```
-7. Commit your changes and push your branch to GitHub
-
+- Commit your changes and push your branch to GitHub
 ```bash
 git add .
 git commit -m "My new feature"  # use descriptive commit message
 git push origin my-new-feature-branch
 ```
+- Create a pull request, and request review from the team
 
-8. Create a pull request, and request review from the team
 > Please follow the pull request template and fill in as much information as possible. Link to any relevant issues and include a description of your changes.
 
 

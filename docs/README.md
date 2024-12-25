@@ -23,9 +23,9 @@ The repository also comes pre-loaded with these GitHub files:
 
 - Pull request template
 - Issue templates
-  - Bug report
-  - Feature request
-  - Question
+    + Bug report
+    + Feature request
+    + Question
 - Contributing guidelines
 - Funding file
 - Code owners
@@ -45,7 +45,7 @@ Pass the following parameters:
 
 Parameter | Description
 --- | ---
-`NAME` | New repository name
+`NAME` | Project new name
 `DESCRIPTION` | Project short description
 `SOURCE` | (optional) Source folder name
 `AUTHOR` | Author name
