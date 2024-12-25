@@ -1,6 +1,7 @@
 site_name: Project Documentation
-repo_url: "https://github.com/amrabed/python-project-template"
-repo_name: "Project"
+repo_url: https://github.com/amrabed/python-project-template
+repo_name: amrabed/python-project-template
+edit_uri: edit/main/docs/
 # copyright: Copyright &copy; 2024 
 
 theme:

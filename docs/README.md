@@ -39,14 +39,15 @@ Click this button to create a new repository for your project, then clone the ne
 ### Rename the project
 After cloning the repository, rename the project by running:
 ```bash
-make project NAME="" DESCRIPTION="" AUTHOR="" EMAIL="" GITHUB=""
+make project NAME="" DESCRIPTION="" AUTHOR="" EMAIL="" GITHUB="" SOURCE=""
 ```
 Pass the following parameters:
 
 Parameter | Description
 --- | ---
-`NAME` | Project new name
+`NAME` | New repository name
 `DESCRIPTION` | Project short description
+`SOURCE` | (optional) Source folder name
 `AUTHOR` | Author name
 `EMAIL`| Author email 
 `GITHUB`| GitHub username (for GitHub funding)
