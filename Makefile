@@ -51,8 +51,8 @@ coverage:
 test: coverage
 
 .PHONY: docs
-docs: # Build documentation site
-	poetry run mkdocs build
+docs: # Build and deploy documentation to GitHub pages
+	poetry run mkdocs gh-deploy --force
 
 local: # Serve documentation on a local server
 	poetry run mkdocs serve
