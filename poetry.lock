@@ -869,13 +869,13 @@ extra = ["pygments (>=2.12)"]
 
 [[package]]
 name = "pyright"
-version = "1.1.391"
+version = "1.1.394"
 description = "Command line wrapper for pyright"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pyright-1.1.391-py3-none-any.whl", hash = "sha256:54fa186f8b3e8a55a44ebfa842636635688670c6896dcf6cf4a7fc75062f4d15"},
-    {file = "pyright-1.1.391.tar.gz", hash = "sha256:66b2d42cdf5c3cbab05f2f4b76e8bec8aa78e679bfa0b6ad7b923d9e027cadb2"},
+    {file = "pyright-1.1.394-py3-none-any.whl", hash = "sha256:5f74cce0a795a295fb768759bbeeec62561215dea657edcaab48a932b031ddbb"},
+    {file = "pyright-1.1.394.tar.gz", hash = "sha256:56f2a3ab88c5214a451eb71d8f2792b7700434f841ea219119ade7f42ca93608"},
 ]
 
 [package.dependencies]
@@ -1225,4 +1225,4 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "5709cacfebd975689eb4369e91edb9c450016afef04c74d63c9cda52d632a0a5"
+content-hash = "cdf8bd9e7dc315058664e6764da3b55bff6fffe3c3126ec202854b385cd2d31e"
