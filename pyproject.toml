@@ -49,7 +49,7 @@ pre-commit = "^4.0.1"
 flake8-pyproject = "^1.2.3"
 pyright = "^1.1.391"
 mkdocs = "^1.6.1"
-mkdocstrings = { version = "^0.27.0", extras=["python"] }
+mkdocstrings = { version = "^0.28.2", extras=["python"] }
 mkdocs-material = "^9.5.49"
 
 [build-system]
