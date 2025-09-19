@@ -12,6 +12,7 @@
 - [ ] Optimization
 - [ ] Refactor
 - [ ] Documentation Update
+- [ ] Dependency Update
 
 ## Summary
 _Please replace this line with a brief description of the changes you've made_

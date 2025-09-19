@@ -10,10 +10,21 @@ updates:
    directory: "/"
    schedule:
      interval: weekly
+   versioning-strategy: increase-if-necessary
+   groups:
+     update-dependencies:
+       applies-to: version-updates
+       patterns:
+         - "*"
  - package-ecosystem: "github-actions"
    directory: "/"
    schedule:
      interval: weekly
+   groups:
+     update-actions:
+       applies-to: version-updates
+       patterns:
+         - "*"
  - package-ecosystem: "devcontainers"
    directory: "/"
    schedule:
