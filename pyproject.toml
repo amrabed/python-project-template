@@ -1,6 +1,9 @@
 [tool.ruff]
 line-length = 120
 
+[tool.ruff.lint]
+select = ["E", "I"]
+
 [tool.coverage.run]
 branch = true
 source = ["project"]
