@@ -1,14 +1,12 @@
-# Python Project Template 
+# Python Project Template
 A Python project template that comes out of the box with configuration for:
 
 - Packaging and dependency management using [Poetry](https://python-poetry.org)
 - Command Line Interface (CLI) using [click](https://click.palletsprojects.com)
 - Testing using [pytest](https://pytest.org)
 - Code coverage using [coverage](https://coverage.readthedocs.io)
-- Fomatting using [black](https://black.readthedocs.io) 
-- Import sorting using [isort](https://pycqa.github.io/isort)
+- Fomatting, import sorting, and linting using [ruff](https://docs.astral.sh/ruff) 
 - Type checking using [pyright](https://microsoft.github.io/pyright)
-- Linting usig [flake8](https://flake8.pycqa.org)
 - Pre-commit validations using [pre-commit](https://pre-commit.com)
 - Workflow automation using [GitHub Actions](https://github.com/features/actions)
 - Automated dependency update using [Dependabot](https://docs.github.com/en/code-security/dependabot)
@@ -161,7 +159,6 @@ make local
 │       └── docs.yml                # Woukflow to publish documentation
 ├── .gitignore                      # Git-ignored file list
 ├── .pre-commit-config.yaml         # Pre-commit configuration file
-├── .flake8                         # flake8 configuration file
 ├── .vscode                         # VS code folder
 │   └── settings.json               # VS code settings
 ├── .dockerignore                   # Docker-ignored file list
