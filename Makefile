@@ -24,10 +24,9 @@ project: # Rename project (run once)
 
 poetry:  # Install Poetry
 	pipx install -f poetry
-	poetry self add poetry-plugin-shell
 
 venv:
-	poetry shell
+	poetry env activate
 
 install: # Install dependencies and project
 	poetry install
