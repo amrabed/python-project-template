@@ -12,7 +12,7 @@ updates:
      interval: weekly
    versioning-strategy: increase-if-necessary
    groups:
-     update-dependencies:
+     dependencies:
        applies-to: version-updates
        patterns:
          - "*"
@@ -21,7 +21,7 @@ updates:
    schedule:
      interval: weekly
    groups:
-     update-actions:
+     github-actions:
        applies-to: version-updates
        patterns:
          - "*"

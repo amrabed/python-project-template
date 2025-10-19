@@ -24,10 +24,9 @@ project: # Rename project (run once)
 
 poetry:  # Install Poetry
 	pipx install -f poetry
-	poetry self add poetry-plugin-shell
 
 venv:
-	poetry shell
+	poetry env activate
 
 install: # Install dependencies and project
 	poetry install
@@ -42,10 +41,9 @@ precommit: # Install pre-commit hooks
 pre-commit: precommit
 
 lint:
-	poetry run black .
-	poetry run isort .
+	poetry run ruff format
+	poetry run ruff check --fix
 	poetry run pyright .
-	poetry run flake8 .
 
 coverage:
 	poetry run coverage run -m pytest .
