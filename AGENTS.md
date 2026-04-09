@@ -2,6 +2,132 @@
 
 This file provides guidelines for AI coding agents (e.g., GitHub Copilot, Cursor, Codex) working in this repository.
 
+---
+
+## Project Overview
+
+This is a **Python project template** that provides a pre-configured, production-ready starting point for Python applications. It includes out-of-the-box support for:
+
+- **Packaging & dependency management** via [Poetry](https://python-poetry.org)
+- **CLI** via [click](https://click.palletsprojects.com)
+- **Testing & coverage** via [pytest](https://pytest.org) and [coverage](https://coverage.readthedocs.io)
+- **Linting, formatting & import sorting** via [ruff](https://docs.astral.sh/ruff)
+- **Type checking** via [pyright](https://microsoft.github.io/pyright)
+- **Pre-commit hooks** via [pre-commit](https://pre-commit.com)
+- **Documentation** via [MkDocs](https://www.mkdocs.org) with [mkdocstrings](https://mkdocstrings.github.io), auto-deployed to GitHub Pages
+- **CI/CD** via GitHub Actions
+- **Containerisation** via Docker and Dev Containers
+
+---
+
+## Project Structure
+
+```
+├── .devcontainer/              # Dev container configuration
+├── .github/                    # GitHub-specific files (Actions, templates, Dependabot)
+├── .vscode/                    # VS Code settings
+├── docs/                       # Documentation source
+│   ├── README.md               # Project README and MkDocs home page
+│   ├── CONTRIBUTING.md         # Contributing guidelines
+│   └── reference/              # Auto-generated API reference pages
+├── project/                    # Main source package (renamed via `make project`)
+│   ├── __init__.py
+│   └── app.py                  # CLI entry point
+├── tests/                      # Test suite
+│   ├── conftest.py             # Shared pytest fixtures and hooks
+│   └── test_app.py             # Sample tests
+├── compose.yml                 # Docker Compose file
+├── Dockerfile                  # App container
+├── Makefile                    # Workflow automation targets
+├── mkdocs.yml                  # MkDocs configuration
+├── pyproject.toml              # Project metadata, dependencies, and tool configuration
+└── poetry.lock                 # Locked dependency versions (do not edit manually)
+```
+
+> **Note:** The `project/` folder is the template placeholder. After initialising a real project with `make project NAME=...`, it is renamed to the chosen package name.
+
+---
+
+## Setup
+
+### Prerequisites
+
+- Python 3.12+
+- [pipx](https://pipx.pypa.io) (to install Poetry)
+- Docker (for Dev Container or containerised runs)
+
+### First-time setup
+
+```bash
+# 1. Install Poetry (if not already installed)
+make poetry
+
+# 2. Install all dependencies
+make install
+
+# 3. Install pre-commit hooks
+make precommit
+
+# 4. Activate the virtual environment
+make venv
+```
+
+### Rename the template for a new project (run once)
+
+```bash
+make project NAME="my-project" DESCRIPTION="My app" AUTHOR="Your Name" EMAIL="you@example.com" GITHUB="your-username"
+```
+
+---
+
+## Common Commands
+
+| Task | Command |
+|---|---|
+| Install dependencies | `make install` |
+| Update dependencies | `make update` |
+| Lint and format | `make lint` |
+| Run tests with coverage | `make test` |
+| Run app locally | `app` (after `make venv`) or `poetry run app` |
+| Run app in Docker | `docker compose run app` |
+| Serve docs locally | `make local` |
+| Deploy docs to GitHub Pages | `make docs` |
+| Full setup from scratch | `make all` |
+
+> Refer to `docs/README.md` for the full list of available targets. Add new targets to `Makefile` as needed.
+
+---
+
+## Code Style
+
+- **Line length**: 120 characters (configured in `pyproject.toml` under `[tool.ruff]`)
+- **Linter/formatter**: `ruff` — enforces `E` (pycodestyle errors) and `I` (isort) rules
+- **Type checker**: `pyright` — all imports must resolve; missing imports are errors
+- **Pre-commit**: hooks run `ruff` automatically before every commit
+- Run `make lint` to format, sort imports, and check types manually
+- All public functions and classes must have docstrings (used by `mkdocstrings` for API docs)
+
+---
+
+## Testing
+
+- Tests live in the `tests/` directory and mirror the source structure
+- Run the full test suite with coverage using `make test` (runs `pytest` via `coverage`)
+- Coverage is measured with branch coverage enabled; the report is printed to the terminal and exported as `coverage.xml`
+- Shared fixtures belong in `tests/conftest.py`
+- Test files must be named `test_*.py`
+
+---
+
+## Git Workflow
+
+- Work on feature branches; open a pull request to `main`
+- Pre-commit hooks enforce formatting and linting on every commit
+- CI (`.github/workflows/check.yml`) runs lint and tests on every push
+- Do not commit directly to `main`
+
+---
+
 ## Dependencies
 
 - Always use Poetry for dependency management (`poetry add <package>`)
