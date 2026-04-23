@@ -8,7 +8,7 @@ This file provides guidelines for AI coding agents (e.g., GitHub Copilot, Cursor
 
 This is a **Python project template** that provides a pre-configured, production-ready starting point for Python applications. It includes out-of-the-box support for:
 
-- **Packaging & dependency management** via [uv](https://python-uv.org)
+- **Packaging & dependency management** via [uv](https://docs.astral.sh/uv)
 - **CLI** via [click](https://click.palletsprojects.com)
 - **Testing & coverage** via [pytest](https://pytest.org) and [coverage](https://coverage.readthedocs.io)
 - **Linting, formatting & import sorting** via [ruff](https://docs.astral.sh/ruff)
@@ -41,7 +41,7 @@ This is a **Python project template** that provides a pre-configured, production
 ├── Makefile                    # Workflow automation targets
 ├── mkdocs.yml                  # MkDocs configuration
 ├── pyproject.toml              # Project metadata, dependencies, and tool configuration
-└── uv.lock                 # Locked dependency versions (do not edit manually)
+└── uv.lock                     # Locked dependency versions (do not edit manually)
 ```
 
 > **Note:** The `project/` folder is the template placeholder. After initialising a real project with `make project NAME=...`, it is renamed to the chosen package name.

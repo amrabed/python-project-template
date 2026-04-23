@@ -5,7 +5,7 @@
 
 A Python project template that comes out of the box with configuration for:
 
-- Packaging and dependency management using [uv](https://python-uv.org)
+- Packaging and dependency management using [uv](https://docs.astral.sh/uv)
 - Command Line Interface (CLI) using [click](https://click.palletsprojects.com)
 - Testing using [pytest](https://pytest.org)
 - Code coverage using [coverage](https://coverage.readthedocs.io)
