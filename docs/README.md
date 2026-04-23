@@ -5,7 +5,7 @@
 
 A Python project template that comes out of the box with configuration for:
 
-- Packaging and dependency management using [Poetry](https://python-poetry.org)
+- Packaging and dependency management using [uv](https://docs.astral.sh/uv)
 - Command Line Interface (CLI) using [click](https://click.palletsprojects.com)
 - Testing using [pytest](https://pytest.org)
 - Code coverage using [coverage](https://coverage.readthedocs.io)
@@ -61,14 +61,14 @@ Parameter | Description
 
 ### Local environment
 - Python 3.12+ (You can update the [`pyproject.toml`](../pyproject.toml#L39) for lower versions)
-- Pipx (*optional* - used to install Poetry if not already installed)
+- Pipx (*optional* - used to install uv if not already installed)
 
 ## Setup
 
-### Install Poetry
-To install poetry, if not installed (requires pipx), run:
+### Install uv
+To install uv, if not installed (requires pipx), run:
 ```bash
-make poetry
+make uv
 ```
 
 ### Install / Update dependencies
@@ -107,10 +107,10 @@ make test
 ```
 
 ## Running the project
-A Poetry script, with the name `app`, is defined in the [pyproject.toml](../pyproject.toml#L36) file, to let you to run the project as a shell command.
+A uv script, with the name `app`, is defined in the [pyproject.toml](../pyproject.toml#L36) file, to let you to run the project as a shell command.
 
 ### Local / Dev container
-> Make sure to activate the virtual environment using `make venv` to be able to run `app` without `poetry run`
+> Make sure to activate the virtual environment using `make venv` to be able to run `app` without `uv run`
 
 Try running `app -h` or `app --help` to get the help message of your app:
 ```bash

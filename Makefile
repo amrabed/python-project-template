@@ -1,3 +1,4 @@
+.DEFAULT_GOAL := help
 
 NAME ?= project
 DESCRIPTION ?= Python Project Template
@@ -5,6 +6,10 @@ AUTHOR ?= Amr Abed
 EMAIL ?= amrabed
 GITHUB ?= amrabed
 SOURCE ?= $(shell echo ${NAME} | tr '-' '_' | tr '[:upper:]' '[:lower:]')
+
+.PHONY: help
+help: # Show help
+	@grep -E '^[a-zA-Z_-]+:.*?# .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?# "}; {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: project
 project: # Rename project (run once)
@@ -22,41 +27,40 @@ project: # Rename project (run once)
 	@sed -i '' 's/^github: \[.*\]/github: \[${GITHUB}\]/' .github/FUNDING.yml
 	@sed -i '' 's/^patreon: .*/patreon: # Put your Patreon username here/' .github/FUNDING.yml
 
-poetry:  # Install Poetry
-	pipx install -f poetry
+uv:  # Install uv
+	pipx install -f uv
 
-venv:
-	poetry env activate
+venv:  # Create and activate virtual environment and install dependencies
+	uv sync
 
-install: # Install dependencies and project
-	poetry install
+install: venv # Install dependencies and project
 
 update: # Update dependencies
-	poetry update
+	uv lock --upgrade
 
 precommit: # Install pre-commit hooks
-	poetry run pre-commit autoupdate
-	poetry run pre-commit install
+	uv run pre-commit autoupdate
+	uv run pre-commit install
 
 pre-commit: precommit
 
-lint:
-	poetry run ruff check --fix
-	poetry run ruff format
-	poetry run pyright .
+lint: # Lint code
+	uv run ruff check --fix
+	uv run ruff format
+	uv run pyright
 
 coverage:
-	poetry run coverage run -m pytest .
-	poetry run coverage report -m
-	poetry run coverage xml
+	uv run coverage run -m pytest .
+	uv run coverage report -m
+	uv run coverage xml
 
 test: coverage
 
 .PHONY: docs
 docs: # Build and deploy documentation to GitHub pages
-	poetry run mkdocs gh-deploy --force
+	uv run mkdocs gh-deploy --force
 
 local: # Serve documentation on a local server
-	poetry run mkdocs serve
+	uv run mkdocs serve
 
-all: poetry install precommit lint test venv
+all: install lint test

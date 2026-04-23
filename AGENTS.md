@@ -8,7 +8,7 @@ This file provides guidelines for AI coding agents (e.g., GitHub Copilot, Cursor
 
 This is a **Python project template** that provides a pre-configured, production-ready starting point for Python applications. It includes out-of-the-box support for:
 
-- **Packaging & dependency management** via [Poetry](https://python-poetry.org)
+- **Packaging & dependency management** via [uv](https://docs.astral.sh/uv)
 - **CLI** via [click](https://click.palletsprojects.com)
 - **Testing & coverage** via [pytest](https://pytest.org) and [coverage](https://coverage.readthedocs.io)
 - **Linting, formatting & import sorting** via [ruff](https://docs.astral.sh/ruff)
@@ -41,7 +41,7 @@ This is a **Python project template** that provides a pre-configured, production
 ├── Makefile                    # Workflow automation targets
 ├── mkdocs.yml                  # MkDocs configuration
 ├── pyproject.toml              # Project metadata, dependencies, and tool configuration
-└── poetry.lock                 # Locked dependency versions (do not edit manually)
+└── uv.lock                     # Locked dependency versions (do not edit manually)
 ```
 
 > **Note:** The `project/` folder is the template placeholder. After initialising a real project with `make project NAME=...`, it is renamed to the chosen package name.
@@ -53,14 +53,14 @@ This is a **Python project template** that provides a pre-configured, production
 ### Prerequisites
 
 - Python 3.12+
-- [pipx](https://pipx.pypa.io) (to install Poetry)
+- [pipx](https://pipx.pypa.io) (to install uv)
 - Docker (for Dev Container or containerised runs)
 
 ### First-time setup
 
 ```bash
-# 1. Install Poetry (if not already installed)
-make poetry
+# 1. Install uv (if not already installed)
+make uv
 
 # 2. Install all dependencies
 make install
@@ -88,7 +88,7 @@ make project NAME="my-project" DESCRIPTION="My app" AUTHOR="Your Name" EMAIL="yo
 | Update dependencies | `make update` |
 | Lint and format | `make lint` |
 | Run tests with coverage | `make test` |
-| Run app locally | `app` (after `make venv`) or `poetry run app` |
+| Run app locally | `app` (after `make venv`) or `uv run app` |
 | Run app in Docker | `docker compose run app` |
 | Serve docs locally | `make local` |
 | Deploy docs to GitHub Pages | `make docs` |
@@ -130,7 +130,7 @@ make project NAME="my-project" DESCRIPTION="My app" AUTHOR="Your Name" EMAIL="yo
 
 ## Dependencies
 
-- Always use Poetry for dependency management (`poetry add <package>`)
+- Always use uv for dependency management (`uv add <package>`)
 - Use Pydantic for data models
 - Use Pydantic-settings for environment variable configuration in a `settings.py` file
 
@@ -147,8 +147,8 @@ Use `make` targets for all common workflows: lint, test, run locally, and deploy
 ## Notes
 
 - Python 3.12+ required
-- Dependencies are managed via `pyproject.toml` and locked in `poetry.lock`
-- Do not edit `poetry.lock` directly; use `make update` to update dependencies
+- Dependencies are managed via `pyproject.toml` and locked in `uv.lock`
+- Do not edit `uv.lock` directly; use `make update` to update dependencies
 
 ## Coding Conventions
 
