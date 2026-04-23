@@ -597,7 +597,7 @@ dev = [
     { name = "coverage", specifier = ">=7.6.9" },
     { name = "mkdocs", specifier = ">=1.6.1" },
     { name = "mkdocs-material", specifier = ">=9.6.20" },
-    { name = "mkdocstrings", extras = ["python"], specifier = ">=1.0.0" },
+    { name = "mkdocstrings", extras = ["python"], specifier = ">=1.0.4" },
     { name = "pre-commit", specifier = ">=4.0.1" },
     { name = "pyright", specifier = ">=1.1.391" },
     { name = "pytest", specifier = ">=9.0.1" },
