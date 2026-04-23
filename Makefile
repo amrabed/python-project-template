@@ -22,41 +22,41 @@ project: # Rename project (run once)
 	@sed -i '' 's/^github: \[.*\]/github: \[${GITHUB}\]/' .github/FUNDING.yml
 	@sed -i '' 's/^patreon: .*/patreon: # Put your Patreon username here/' .github/FUNDING.yml
 
-poetry:  # Install Poetry
-	pipx install -f poetry
+uv:  # Install uv
+	pipx install -f uv
 
 venv:
-	poetry env activate
+	uv venv
 
 install: # Install dependencies and project
-	poetry install
+	uv sync
 
 update: # Update dependencies
-	poetry update
+	uv lock --update
 
 precommit: # Install pre-commit hooks
-	poetry run pre-commit autoupdate
-	poetry run pre-commit install
+	uv run pre-commit autoupdate
+	uv run pre-commit install
 
 pre-commit: precommit
 
 lint:
-	poetry run ruff check --fix
-	poetry run ruff format
-	poetry run pyright .
+	uv run ruff check --fix
+	uv run ruff format
+	uv run pyright .
 
 coverage:
-	poetry run coverage run -m pytest .
-	poetry run coverage report -m
-	poetry run coverage xml
+	uv run coverage run -m pytest .
+	uv run coverage report -m
+	uv run coverage xml
 
 test: coverage
 
 .PHONY: docs
 docs: # Build and deploy documentation to GitHub pages
-	poetry run mkdocs gh-deploy --force
+	uv run mkdocs gh-deploy --force
 
 local: # Serve documentation on a local server
-	poetry run mkdocs serve
+	uv run mkdocs serve
 
-all: poetry install precommit lint test venv
+all: uv install precommit lint test venv

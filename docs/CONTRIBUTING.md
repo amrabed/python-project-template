@@ -30,7 +30,7 @@ To make contributing as easy and fast as possible, you'll want to run tests and 
 You'll need the following prerequisites:
 
 - **Python 3.12+**
-- **Poetry**
+- **uv**
 - **git**
 - **make**
 
@@ -41,7 +41,7 @@ You'll need the following prerequisites:
 - Install the project dependencies:
 
 ```bash
-make poetry install pre-commit
+make uv install pre-commit
 ```
 - Create a new branch (with a descriptive name) for your changes:
 

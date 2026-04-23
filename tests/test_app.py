@@ -1,9 +1,10 @@
-from pytest import main
+from click.testing import CliRunner
+
+from project.app import main
 
 
 def test_main():
-    pass
-
-
-if __name__ == "__main__":
-    main()
+    runner = CliRunner()
+    result = runner.invoke(main, ["--name", "Jules"])
+    assert result.exit_code == 0
+    assert "Hello Jules!" in result.output
