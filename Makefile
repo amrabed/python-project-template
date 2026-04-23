@@ -1,3 +1,4 @@
+.DEFAULT_GOAL := help
 
 NAME ?= project
 DESCRIPTION ?= Python Project Template
@@ -5,6 +6,10 @@ AUTHOR ?= Amr Abed
 EMAIL ?= amrabed
 GITHUB ?= amrabed
 SOURCE ?= $(shell echo ${NAME} | tr '-' '_' | tr '[:upper:]' '[:lower:]')
+
+.PHONY: help
+help: # Show help
+	@grep -E '^[a-zA-Z_-]+:.*?# .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?# "}; {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: project
 project: # Rename project (run once)
@@ -25,14 +30,13 @@ project: # Rename project (run once)
 uv:  # Install uv
 	pipx install -f uv
 
-venv:
-	uv venv
-
-install: # Install dependencies and project
+venv:  # Create and activate virtual environment and install dependencies
 	uv sync
 
+install: venv # Install dependencies and project
+
 update: # Update dependencies
-	uv lock --update
+	uv lock --upgrade
 
 precommit: # Install pre-commit hooks
 	uv run pre-commit autoupdate
@@ -59,4 +63,4 @@ docs: # Build and deploy documentation to GitHub pages
 local: # Serve documentation on a local server
 	uv run mkdocs serve
 
-all: uv install precommit lint test venv
+all: install lint test
