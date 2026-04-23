@@ -40,10 +40,10 @@ precommit: # Install pre-commit hooks
 
 pre-commit: precommit
 
-lint:
+lint: # Lint code
 	uv run ruff check --fix
 	uv run ruff format
-	uv run pyright .
+	uv run pyright
 
 coverage:
 	uv run coverage run -m pytest .
