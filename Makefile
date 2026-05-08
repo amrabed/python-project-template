@@ -14,17 +14,17 @@ help: # Show help
 .PHONY: project
 project: # Rename project (run once)
 	@if [ -d project ]; then mv project ${SOURCE}; fi
-	@perl -i -pe 's/^::: project\.app/::: ${SOURCE}\.app/' docs/reference/app.md
-	@perl -i -pe 's/^repo_name: .*/repo_name: ${GITHUB}\/${NAME}/' mkdocs.yml
-	@perl -i -pe 's/^repo_url: .*/repo_url: https:\/\/github.com\/${GITHUB}\/${NAME}/' mkdocs.yml
-	@perl -i -pe 's/^source = \[.*\]/source = \["${SOURCE}"\]/' pyproject.toml
-	@perl -i -pe 's/^app = "project\.app:main"/app = "${SOURCE}\.app:main"/' pyproject.toml
-	@perl -i -pe 's/^name = ".*"/name = "${SOURCE}"/' pyproject.toml
-	@perl -i -pe 's/^description = ".*"/description = "${DESCRIPTION}"/' pyproject.toml
-	@perl -i -pe 's/^authors = \[.*\]/authors = \["${AUTHOR} <${EMAIL}>"\]/' pyproject.toml
-	@perl -i -pe 's/^# .*/# ${DESCRIPTION}/' docs/README.md
-	@perl -i -pe 's/@.*/@${GITHUB}/' .github/CODEOWNERS
-	@perl -i -pe 's/^github: \[.*\]/github: \[${GITHUB}\]/' .github/FUNDING.yml
+	@sed -i '' 's/^::: project\.app/::: ${SOURCE}\.app/' docs/reference/app.md
+	@sed -i '' 's/^repo_name: .*/repo_name: ${GITHUB}\/${NAME}/' mkdocs.yml
+	@sed -i '' 's/^repo_url: .*/repo_url: https:\/\/github.com\/${GITHUB}\/${NAME}/' mkdocs.yml
+	@sed -i '' 's/^source = \[.*\]/source = \["${SOURCE}"\]/' pyproject.toml
+	@sed -i '' 's/^app = "project\.app:main"/app = "${SOURCE}\.app:main"/' pyproject.toml
+	@sed -i '' 's/^name = ".*"/name = "${SOURCE}"/' pyproject.toml
+	@sed -i '' 's/^description = ".*"/description = "${DESCRIPTION}"/' pyproject.toml
+	@sed -i '' 's/^authors = \[.*\]/authors = \["${AUTHOR} <${EMAIL}>"\]/' pyproject.toml
+	@sed -i '' 's/^# .*/# ${DESCRIPTION}/' docs/README.md
+	@sed -i '' 's/@.*/@${GITHUB}/' .github/CODEOWNERS
+	@sed -i '' 's/^github: \[.*\]/github: \[${GITHUB}\]/' .github/FUNDING.yml
 
 uv:  # Install uv
 	pipx install -f uv
