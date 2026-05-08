@@ -11,7 +11,7 @@ help: # Show help
 	@grep -E '^[a-zA-Z_-]+:.*?# .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?# "}; {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: project
-project: # Rename project (run once)
+project: uv # Rename project (run once)
 	@uv run rename \
 		--name '$(subst ','\'',$(NAME))' \
 		--description '$(subst ','\'',$(DESCRIPTION))' \
@@ -20,7 +20,7 @@ project: # Rename project (run once)
 		--github '$(subst ','\'',$(GITHUB))'
 
 uv:  # Install uv
-	pipx install -f uv
+	@command -v uv >/dev/null 2>&1 || pipx install uv
 
 venv:  # Create and activate virtual environment and install dependencies
 	uv sync
