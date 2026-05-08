@@ -12,7 +12,12 @@ help: # Show help
 
 .PHONY: project
 project: # Rename project (run once)
-	@uv run scripts/rename.py '$(subst ','\'',$(NAME))' '$(subst ','\'',$(DESCRIPTION))' '$(subst ','\'',$(AUTHOR))' '$(subst ','\'',$(EMAIL))' '$(subst ','\'',$(GITHUB))'
+	@uv run scripts/rename.py \
+		--name '$(subst ','\'',$(NAME))' \
+		--description '$(subst ','\'',$(DESCRIPTION))' \
+		--author '$(subst ','\'',$(AUTHOR))' \
+		--email '$(subst ','\'',$(EMAIL))' \
+		--github '$(subst ','\'',$(GITHUB))'
 
 uv:  # Install uv
 	pipx install -f uv

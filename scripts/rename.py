@@ -1,38 +1,33 @@
 import os
 import re
 import shutil
-import sys
 from pathlib import Path
 
+import click
 
-def main():
-    if len(sys.argv) != 6:
-        print("Usage: python3 project_init.py <NAME> <DESCRIPTION> <AUTHOR> <EMAIL> <GITHUB>")
-        sys.exit(1)
 
-    name = sys.argv[1]
-    description = sys.argv[2]
-    author = sys.argv[3]
-    email = sys.argv[4]
-    github = sys.argv[5]
-
+@click.command()
+@click.option("--name", required=True, help="Project new name")
+@click.option("--description", required=True, help="Project short description")
+@click.option("--author", required=True, help="Author name")
+@click.option("--email", required=True, help="Author email")
+@click.option("--github", required=True, help="GitHub username")
+def main(name: str, description: str, author: str, email: str, github: str):
     # Validate name to prevent directory traversal or other injection
     if not re.match(r"^[a-zA-Z0-9_-]+$", name):
-        print(
-            f"Error: Invalid project name '{name}'. Only alphanumeric characters, dashes, and underscores are allowed."
+        raise click.UsageError(
+            f"Invalid project name '{name}'. Only alphanumeric characters, dashes, and underscores are allowed."
         )
-        sys.exit(1)
 
     source = name.replace("-", "_").lower()
 
-    print(f"Initializing project '{name}' (source: '{source}')...")
+    click.echo(f"Initializing project '{name}' (source: '{source}')...")
 
     # 1. Rename project directory
     if os.path.isdir("project"):
         shutil.move("project", source)
     elif not os.path.isdir(source):
-        print(f"Error: Neither 'project' nor '{source}' directory found.")
-        sys.exit(1)
+        raise click.ClickException(f"Error: Neither 'project' nor '{source}' directory found.")
 
     # 2. File modifications
     replacements = [
@@ -52,15 +47,15 @@ def main():
     for filepath, pattern, replacement in replacements:
         path = Path(filepath)
         if not path.exists():
-            print(f"Warning: File {filepath} not found, skipping.")
+            click.echo(f"Warning: File {filepath} not found, skipping.")
             continue
 
         content = path.read_text()
         new_content = re.sub(pattern, replacement, content, flags=re.MULTILINE)
         path.write_text(new_content)
-        print(f"Updated {filepath}")
+        click.echo(f"Updated {filepath}")
 
-    print("Project initialization complete.")
+    click.echo("Project initialization complete.")
 
 
 if __name__ == "__main__":
