@@ -12,6 +12,7 @@ dependencies = [
 
 [project.scripts]
 app = "project.app:main"
+rename = "scripts.rename:main"
 
 [dependency-groups]
 dev = [

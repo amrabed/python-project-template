@@ -12,7 +12,7 @@ help: # Show help
 
 .PHONY: project
 project: # Rename project (run once)
-	@uv run scripts/rename.py \
+	@uv run rename \
 		--name '$(subst ','\'',$(NAME))' \
 		--description '$(subst ','\'',$(DESCRIPTION))' \
 		--author '$(subst ','\'',$(AUTHOR))' \
