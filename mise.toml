@@ -1,0 +1,61 @@
+[tools]
+python = "3.12"
+uv = "latest"
+
+[env]
+_.python.venv = { path = ".venv", create = true }
+# Use uv's automatic venv management if possible, or mise's.
+# Based on mise docs, python.uv_venv_auto = "create|source" is good.
+[settings]
+python.uv_venv_auto = "create|source"
+
+[tasks.install]
+description = "Install dependencies"
+run = "uv sync"
+
+[tasks.update]
+description = "Update dependencies"
+run = "uv lock --upgrade"
+
+[tasks.lint]
+description = "Lint and format code"
+run = [
+    "uv run ruff check --fix",
+    "uv run ruff format",
+    "uv run pyright"
+]
+
+[tasks.test]
+description = "Run tests with coverage"
+run = [
+    "uv run coverage run -m pytest .",
+    "uv run coverage report -m",
+    "uv run coverage xml"
+]
+
+[tasks.docs]
+description = "Build and deploy documentation to GitHub pages"
+run = "uv run mkdocs gh-deploy --force"
+
+[tasks.local]
+description = "Serve documentation on a local server"
+run = "uv run mkdocs serve"
+
+[tasks.app]
+description = "Run the app"
+run = "uv run app"
+
+[tasks.rename]
+description = "Rename project (run once)"
+run = "uv run rename"
+
+[tasks.project]
+alias = "rename"
+
+[tasks.precommit]
+description = "Install pre-commit hooks"
+run = "uv run pre-commit autoupdate && uv run pre-commit install"
+
+[tasks.all]
+description = "Full setup from scratch"
+depends = ["install", "lint", "test"]
