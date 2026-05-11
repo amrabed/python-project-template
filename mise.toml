@@ -1,11 +1,15 @@
 [tools]
-python = "3.12"
+python = "3.14"
 uv = "latest"
 
-[env]
-_.python.venv = { path = ".venv", create = true }
-# Use uv's automatic venv management if possible, or mise's.
-# Based on mise docs, python.uv_venv_auto = "create|source" is good.
+[shell_alias]
+mr = "mise run"
+i = "mise run install"
+u = "mise run update"
+l = "mise run lint"
+t = "mise run test"
+d = "mise run local-docs"
+
 [settings]
 python.uv_venv_auto = "create|source"
 
@@ -44,12 +48,12 @@ hide = true
 
 [tasks.docs]
 description = "Build and deploy documentation to GitHub pages"
-alias = "d"
 depends = ["install-docs"]
 run = "uv run mkdocs gh-deploy --force"
 
-[tasks.local]
+[tasks.local-docs]
 description = "Serve documentation on a local server"
+alias = "d"
 depends = ["install-docs"]
 run = "uv run mkdocs serve"
 

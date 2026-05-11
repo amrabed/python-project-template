@@ -48,12 +48,11 @@ Pass the following parameters:
 
 Parameter | Description
 --- | ---
-`NAME` | Project new name
-`DESCRIPTION` | Project short description
-`SOURCE` | (optional) Source folder name
-`AUTHOR` | Author name
-`EMAIL`| Author email 
-`GITHUB`| GitHub username (for GitHub funding)
+`name` | Project new name
+`description` | Project short description
+`author` | Author name
+`email`| Author email
+`github`| GitHub username (for GitHub funding)
 
 
 ## Prerequisites
@@ -61,13 +60,12 @@ Parameter | Description
 - Docker
 
 ### Local environment
-- Python 3.12+ (You can update the [`pyproject.toml`](../pyproject.toml#L39) for lower versions)
-- [mise](https://mise.jdx.dev)
+- Docker
 
 ## Setup
 
 ### Install / Update dependencies
-To install the project dependencies defined in the [pyproject.toml](../pyproject.toml) file, run:
+To install the project dependencies, run:
 ```bash
 mise run install
 ```
@@ -84,7 +82,7 @@ mise run precommit
 ```
 
 ### Activate virtual environment
-Mise automatically creates and activates the virtual environment if you have `mise activate` set up in your shell. Otherwise, you can run commands using `mise run <task>` or `mise exec -- <command>`.
+Mise automatically creates and activates the virtual environment if you have `mise activate` set up in your shell. Otherwise, you can run tasks using `mise run <task>` or commands using `mise exec -- <command>`.
 
 ### Format and Lint code
 To format and lint project code, run:
@@ -130,7 +128,7 @@ Make sure GitHub Pages is enableed in your repository settings and using the gh-
 ### Local
 To serve the documentation on a local server, run:
 ```bash
-mise run local
+mise run local-docs
 ```
 
 ## Project Structure
