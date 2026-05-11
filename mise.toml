@@ -11,14 +11,17 @@ python.uv_venv_auto = "create|source"
 
 [tasks.install]
 description = "Install dependencies"
+alias = "i"
 run = "uv sync"
 
 [tasks.update]
 description = "Update dependencies"
+alias = "u"
 run = "uv lock --upgrade"
 
 [tasks.lint]
 description = "Lint and format code"
+alias = "l"
 run = [
     "uv run ruff check --fix",
     "uv run ruff format",
@@ -27,6 +30,7 @@ run = [
 
 [tasks.test]
 description = "Run tests with coverage"
+alias = "t"
 run = [
     "uv run coverage run -m pytest .",
     "uv run coverage report -m",
@@ -40,6 +44,7 @@ hide = true
 
 [tasks.docs]
 description = "Build and deploy documentation to GitHub pages"
+alias = "d"
 depends = ["install-docs"]
 run = "uv run mkdocs gh-deploy --force"
 
@@ -50,14 +55,16 @@ run = "uv run mkdocs serve"
 
 [tasks.app]
 description = "Run the app"
+alias = "a"
 run = "uv run app"
 
 [tasks.rename]
 description = "Rename project (run once)"
+alias = "r"
 run = "uv run rename"
 
 [tasks.project]
-alias = "rename"
+alias = ["rename", "p"]
 
 [tasks.precommit]
 description = "Install pre-commit hooks"
