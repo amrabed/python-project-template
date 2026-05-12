@@ -60,7 +60,7 @@ Parameter | Description
 - Docker
 
 ### Local environment
-- Docker
+- [mise](https://mise.jdx.dev)
 
 ## Setup
 
