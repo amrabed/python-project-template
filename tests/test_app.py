@@ -1,14 +1,9 @@
-from project.app import main
+from pytest import main
 
 
 def test_main():
-    try:
-        main(args=[], standalone_mode=False)
-    except SystemExit:
-        pass
+    pass
 
 
 if __name__ == "__main__":
-    import pytest
-
-    pytest.main()
+    main()

@@ -9,6 +9,10 @@ u = "mise run update"
 l = "mise run lint"
 t = "mise run test"
 d = "mise run local-docs"
+ll = "ls -l"
+la = "ls -a"
+gc = "git commit"
+gp = "git push"
 
 [settings]
 python.uv_venv_auto = "create|source"
@@ -77,3 +81,7 @@ run = "uv run pre-commit autoupdate && uv run pre-commit install"
 [tasks.all]
 description = "Full setup from scratch"
 depends = ["install", "lint", "test"]
+
+[tasks.dev]
+description = "Setup the dev environment"
+depends = ["precommit", "install"]

@@ -31,7 +31,6 @@ def main(name: str, description: str, author: str, email: str, github: str):
 
     # 2. File modifications
     replacements = [
-        ("tests/test_app.py", r"from project\.app", f"from {source}.app"),
         ("docs/reference/app.md", r"^::: project\.app", f"::: {source}.app"),
         ("mkdocs.yml", r"^repo_name: .*", f"repo_name: {github}/{name}"),
         ("mkdocs.yml", r"^repo_url: .*", f"repo_url: https://github.com/{github}/{name}"),
