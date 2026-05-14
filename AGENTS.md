@@ -17,6 +17,7 @@ This is a **Python project template** that provides a pre-configured, production
 - **Documentation** via [MkDocs](https://www.mkdocs.org) with [mkdocstrings](https://mkdocstrings.github.io), auto-deployed to GitHub Pages
 - **CI/CD** via GitHub Actions
 - **Containerisation** via Docker and Dev Containers
+- **Environment & Task Management** via [mise](https://mise.jdx.dev)
 
 ---
 
@@ -30,7 +31,7 @@ This is a **Python project template** that provides a pre-configured, production
 │   ├── README.md               # Project README and MkDocs home page
 │   ├── CONTRIBUTING.md         # Contributing guidelines
 │   └── reference/              # Auto-generated API reference pages
-├── project/                    # Main source package (renamed via `make project`)
+├── project/                    # Main source package (renamed via `mise run project`)
 │   ├── __init__.py
 │   └── app.py                  # CLI entry point
 ├── tests/                      # Test suite
@@ -38,13 +39,13 @@ This is a **Python project template** that provides a pre-configured, production
 │   └── test_app.py             # Sample tests
 ├── compose.yml                 # Docker Compose file
 ├── Dockerfile                  # App container
-├── Makefile                    # Workflow automation targets
+├── mise.toml                   # Workflow automation tasks
 ├── mkdocs.yml                  # MkDocs configuration
 ├── pyproject.toml              # Project metadata, dependencies, and tool configuration
 └── uv.lock                     # Locked dependency versions (do not edit manually)
 ```
 
-> **Note:** The `project/` folder is the template placeholder. After initialising a real project with `make project NAME=...`, it is renamed to the chosen package name.
+> **Note:** The `project/` folder is the template placeholder. After initialising a real project with `mise run project name=...`, it is renamed to the chosen package name.
 
 ---
 
@@ -52,49 +53,40 @@ This is a **Python project template** that provides a pre-configured, production
 
 ### Prerequisites
 
-- Python 3.12+
-- [pipx](https://pipx.pypa.io) (to install uv)
+- [mise](https://mise.jdx.dev)
 - Docker (for Dev Container or containerised runs)
 
 ### First-time setup
 
 ```bash
-# 1. Install uv (if not already installed)
-make uv
-
-# 2. Install all dependencies
-make install
-
-# 3. Install pre-commit hooks
-make precommit
-
-# 4. Activate the virtual environment
-make venv
+# Install tools, project dependencies, and pre-commit hooks
+mise run dev
 ```
 
 ### Rename the template for a new project (run once)
 
 ```bash
-make project NAME="my-project" DESCRIPTION="My app" AUTHOR="Your Name" EMAIL="you@example.com" GITHUB="your-username"
+mise run project --name "my-project" --description "My app" --author "Your Name" --email "you@example.com" --github "your-username"
 ```
 
 ---
 
 ## Common Commands
 
-| Task | Command |
-|---|---|
-| Install dependencies | `make install` |
-| Update dependencies | `make update` |
-| Lint and format | `make lint` |
-| Run tests with coverage | `make test` |
-| Run app locally | `app` (after `make venv`) or `uv run app` |
-| Run app in Docker | `docker compose run app` |
-| Serve docs locally | `make local` |
-| Deploy docs to GitHub Pages | `make docs` |
-| Full setup from scratch | `make all` |
+| Task | Command | Alias |
+|---|---|---|
+| Install dependencies | `mise run install` | `i` |
+| Update dependencies | `mise run update` | `u` |
+| Lint and format | `mise run lint` | `l` |
+| Run tests with coverage | `mise run test` | `t` |
+| Run app locally | `mise run app` | `a` |
+| Run app in Docker | `docker compose run app` | |
+| Serve docs locally | `mise run local-docs` | `d` |
+| Deploy docs to GitHub Pages | `mise run docs` | |
+| Setup dev environment | `mise run dev` | |
+| Full setup from scratch | `mise run all` | |
 
-> Refer to `docs/README.md` for the full list of available targets. Add new targets to `Makefile` as needed.
+> Refer to `docs/README.md` for the full list of available targets. Add new targets to `mise.toml` as needed.
 
 ---
 
@@ -104,7 +96,7 @@ make project NAME="my-project" DESCRIPTION="My app" AUTHOR="Your Name" EMAIL="yo
 - **Linter/formatter**: `ruff` — enforces `E` (pycodestyle errors) and `I` (isort) rules
 - **Type checker**: `pyright` — all imports must resolve; missing imports are errors
 - **Pre-commit**: hooks run `ruff` automatically before every commit
-- Run `make lint` to format, sort imports, and check types manually
+- Run `mise run lint` to format, sort imports, and check types manually
 - All public functions and classes must have docstrings (used by `mkdocstrings` for API docs)
 
 ---
@@ -112,7 +104,7 @@ make project NAME="my-project" DESCRIPTION="My app" AUTHOR="Your Name" EMAIL="yo
 ## Testing
 
 - Tests live in the `tests/` directory and mirror the source structure
-- Run the full test suite with coverage using `make test` (runs `pytest` via `coverage`)
+- Run the full test suite with coverage using `mise run test` (runs `pytest` via `coverage`)
 - Coverage is measured with branch coverage enabled; the report is printed to the terminal and exported as `coverage.xml`
 - Shared fixtures belong in `tests/conftest.py`
 - Test files must be named `test_*.py`
@@ -140,15 +132,15 @@ make project NAME="my-project" DESCRIPTION="My app" AUTHOR="Your Name" EMAIL="yo
 - Use `pytest` monkeypatch and `pytest-mock` for mocking instead of `unittest.MagicMock`
 - Do not cheat! Never modify source code just to make a failing test pass. Fix real bugs in source code and fix incorrect assertions in tests
 
-## Make Targets
+## Mise Tasks
 
-Use `make` targets for all common workflows: lint, test, run locally, and deploy. Refer to `docs/README.md` for currently available targets. Add new targets to `Makefile` as needed.
+Use `mise` tasks for all common workflows: lint, test, run locally, and deploy. Refer to `docs/README.md` for currently available tasks. Add new tasks to `mise.toml` as needed.
 
 ## Notes
 
 - Python 3.12+ required
 - Dependencies are managed via `pyproject.toml` and locked in `uv.lock`
-- Do not edit `uv.lock` directly; use `make update` to update dependencies
+- Do not edit `uv.lock` directly; use `mise run update` to update dependencies
 
 ## Coding Conventions
 

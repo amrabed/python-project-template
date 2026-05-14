@@ -6,6 +6,7 @@
 A Python project template that comes out of the box with configuration for:
 
 - Packaging and dependency management using [uv](https://docs.astral.sh/uv)
+- Development environment and task management using [mise](https://mise.jdx.dev)
 - Command Line Interface (CLI) using [click](https://click.palletsprojects.com)
 - Testing using [pytest](https://pytest.org)
 - Code coverage using [coverage](https://coverage.readthedocs.io)
@@ -41,18 +42,17 @@ Click this button to create a new repository for your project, then clone the ne
 ### Rename the project
 After cloning the repository, rename the project by running:
 ```bash
-make project NAME="" DESCRIPTION="" AUTHOR="" EMAIL="" GITHUB="" SOURCE=""
+mise run project --name "" --description "" --author "" --email "" --github ""
 ```
 Pass the following parameters:
 
 Parameter | Description
 --- | ---
-`NAME` | Project new name
-`DESCRIPTION` | Project short description
-`SOURCE` | (optional) Source folder name
-`AUTHOR` | Author name
-`EMAIL`| Author email 
-`GITHUB`| GitHub username (for GitHub funding)
+`name` | Project new name
+`description` | Project short description
+`author` | Author name
+`email`| Author email
+`github`| GitHub username (for GitHub funding)
 
 
 ## Prerequisites
@@ -60,59 +60,47 @@ Parameter | Description
 - Docker
 
 ### Local environment
-- Python 3.12+ (You can update the [`pyproject.toml`](../pyproject.toml#L39) for lower versions)
-- Pipx (*optional* - used to install uv if not already installed)
+- [mise](https://mise.jdx.dev)
 
 ## Setup
 
-### Install uv
-To install uv, if not installed (requires pipx), run:
-```bash
-make uv
-```
-
 ### Install / Update dependencies
-To install the project dependencies defined in the [pyproject.toml](../pyproject.toml) file, run:
+To install the project dependencies, run:
 ```bash
-make install
+mise run install
 ```
 
 To update the project dependencies, run:
 ```bash
-make update
+mise run update
 ```
 
 ### Install pre-commit hooks
 To install the pre-commit hooks for the project to format and lint your code automatically before commiting, run: 
 ```bash
-make precommit
+mise run precommit
 ```
 
-### Activate virtual environemnt
-To activate the virtual environment, run:
-```bash
-make venv
-```
+### Activate virtual environment
+Mise automatically creates and activates the virtual environment if you have `mise activate` set up in your shell. Otherwise, you can run tasks using `mise run <task>` or commands using `mise exec -- <command>`.
 
 ### Format and Lint code
 To format and lint project code, run:
 ```bash
-make lint
+mise run lint
 ```
 
 ### Run tests with coverage
 To run the unit tests defined under the [tests](../tests/) folder and show coverage report, run:
 ```bash
-make test
+mise run test
 ```
 
 ## Running the project
-A uv script, with the name `app`, is defined in the [pyproject.toml](../pyproject.toml#L36) file, to let you to run the project as a shell command.
+A mise task, with the name `app`, is defined in the [mise.toml](../mise.toml) file, to let you to run the project.
 
 ### Local / Dev container
-> Make sure to activate the virtual environment using `make venv` to be able to run `app` without `uv run`
-
-Try running `app -h` or `app --help` to get the help message of your app:
+Try running `mise run app -- -h` or `mise run app -- --help` to get the help message of your app:
 ```bash
 Usage: app [OPTIONS]
 
@@ -132,7 +120,7 @@ docker compose run app -h
 ## Generating documentation
 To generate and publish the project documentation to GitHub pages, run:
 ```bash
-make docs
+mise run docs
 ```
 That pushes the new documentation to the gh-pages branch. 
 Make sure GitHub Pages is enableed in your repository settings and using the gh-pages branch for the documentation to be publicly available.
@@ -140,7 +128,7 @@ Make sure GitHub Pages is enableed in your repository settings and using the gh-
 ### Local
 To serve the documentation on a local server, run:
 ```bash
-make local
+mise run local-docs
 ```
 
 ## Project Structure
@@ -169,7 +157,7 @@ make local
 ├── compose.yml                     # Docker-compose file
 ├── Dockerfile                      # App container Dockerfile
 ├── LICENSE                         # Project license
-├── Makefile                        # Make commands
+├── mise.toml                       # Mise configuration and tasks
 ├── pyproject.toml                  # Configuration file for different tools
 ├── docs                            # Documentaion folder
 │   ├── mkdocs.yml                  # mkdocs configuration file

@@ -1,0 +1,105 @@
+[tools]
+python = "3.14"
+uv = "latest"
+
+###### Shell aliases ######
+
+[shell_alias]
+m = "mise run"
+i = "mise run install"
+u = "mise run update"
+l = "mise run lint"
+t = "mise run test"
+d = "mise run local-docs"
+
+ll = "ls -l"
+la = "ls -a"
+
+g = "git"
+gs = "git status"
+ga = "git add"
+gc = "git commit"
+gp = "git push"
+
+
+###### Settings ######
+
+[settings]
+python.uv_venv_auto = "create|source"
+
+###### Setup ######
+[tasks.dev]
+description = "Setup the dev environment"
+depends = ["precommit", "install"]
+
+[tasks.precommit]
+description = "Install pre-commit hooks"
+run = "uv run pre-commit autoupdate && uv run pre-commit install"
+
+[tasks.install]
+description = "Install dependencies"
+alias = "i"
+run = "uv sync"
+
+
+[tasks.update]
+description = "Update dependencies"
+alias = "u"
+run = "uv lock --upgrade"
+
+##### Common Tasks #####
+
+[tasks.lint]
+description = "Lint and format code"
+alias = "l"
+run = [
+    "uv run ruff check --fix",
+    "uv run ruff format",
+    # "uv run pyright",
+]
+
+[tasks.test]
+description = "Run tests with coverage"
+alias = "t"
+run = [
+    "uv run coverage run -m pytest .",
+    "uv run coverage report -m",
+    "uv run coverage xml",
+]
+
+[tasks.all]
+description = "Full setup from scratch"
+depends = ["install", "lint", "test"]
+
+##### Docs #####
+
+[tasks.install-docs]
+description = "Install documentation dependencies"
+run = "uv sync --group docs"
+hide = true
+
+[tasks.docs]
+description = "Build and deploy documentation to GitHub pages"
+depends = ["install-docs"]
+run = "uv run mkdocs gh-deploy --force"
+
+[tasks.local-docs]
+description = "Serve documentation on a local server"
+alias = "d"
+depends = ["install-docs"]
+run = "uv run mkdocs serve"
+
+###### Scripts ######
+
+[tasks.app]
+description = "Run the app"
+alias = "a"
+run = "uv run app"
+
+[tasks.rename]
+description = "Rename project (run once)"
+alias = "r"
+run = "uv run rename"
+
+[tasks.project]
+alias = ["rename", "p"]

@@ -3,7 +3,7 @@ name = "project"
 version = "0.1.0"
 description = "Python Project Template"
 readme = "docs/README.md"
-authors = [{name = "Amr Abed", email = "amrabed@gmail.com"}]
+authors = [{name = "Amr Abed", email = ""}]
 license = {text = "MIT"}
 requires-python = ">=3.12"
 dependencies = [
@@ -21,6 +21,8 @@ dev = [
     "coverage>=7.6.9",
     "pre-commit>=4.0.1",
     "pyright>=1.1.391",
+]
+docs = [
     "mkdocs>=1.6.1",
     "mkdocstrings[python]>=1.0.4",
     "mkdocs-material>=9.6.20",

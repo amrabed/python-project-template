@@ -29,19 +29,17 @@ To make contributing as easy and fast as possible, you'll want to run tests and 
 
 You'll need the following prerequisites:
 
-- **Python 3.12+**
-- **uv**
+- [mise](https://mise.jdx.dev)
 - **git**
-- **make**
 
 ### How to contribute
 
 - Fork the repository on GitHub 
 - Clone your fork locally.
-- Install the project dependencies:
+- Install the project dependencies and setup the dev environment:
 
 ```bash
-make uv install pre-commit
+mise run dev
 ```
 - Create a new branch (with a descriptive name) for your changes:
 
@@ -52,7 +50,7 @@ git checkout -b my-new-feature  # use descriptive branch name
 - Run tests and linting locally to make sure everything is working as expected.
 
 ```bash
-make lint test
+mise run lint test
 ```
 - Commit your changes and push your branch to GitHub
 ```bash
@@ -82,7 +80,7 @@ Project Documentation is written in Markdown and built using [Material for MkDoc
 
 To preview the docuementation on your local, run:
 ```bash
-make local
+mise run local-docs
 ```
 
 ## Reporting Bugs

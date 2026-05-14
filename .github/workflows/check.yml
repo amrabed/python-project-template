@@ -15,14 +15,13 @@ jobs:
           - "3.12"
     steps:
       - uses: actions/checkout@v6
-      - name: Install uv and setup Python
-        uses: astral-sh/setup-uv@v7
+      - uses: jdx/mise-action@v4
         with:
-          python-version: ${{ matrix.python-version }}
-          enable-cache: true
+          tool_versions: |
+            python ${{ matrix.python-version }}
       - name: Install dependencies
-        run: make install
+        run: mise run install
       - name: Format and lint
-        run: make lint
+        run: mise run lint
       - name: Run tests
-        run: make test
+        run: mise run test
