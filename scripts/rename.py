@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+from collections import defaultdict
 from pathlib import Path
 
 from click import ClickException, UsageError, command, echo, option
@@ -30,7 +31,7 @@ def main(name: str, description: str, author: str, email: str, github: str):
         raise ClickException(f"Error: Neither 'project' nor '{source}' directory found.")
 
     # 2. File modifications
-    replacements = [
+    replacements_list = [
         ("docs/reference/app.md", r"^::: project\.app", f"::: {source}.app"),
         ("mkdocs.yml", r"^repo_name: .*", f"repo_name: {github}/{name}"),
         ("mkdocs.yml", r"^repo_url: .*", f"repo_url: https://github.com/{github}/{name}"),
@@ -44,16 +45,25 @@ def main(name: str, description: str, author: str, email: str, github: str):
         (".github/FUNDING.yml", r"^github: \[.*\]", f"github: [{github}]"),
     ]
 
-    for filepath, pattern, replacement in replacements:
+    # Group replacements by file to minimize I/O
+    file_replacements = defaultdict(list)
+    for filepath, pattern, replacement in replacements_list:
+        file_replacements[filepath].append((pattern, replacement))
+
+    for filepath, patterns in file_replacements.items():
         path = Path(filepath)
         if not path.exists():
             echo(f"Warning: File {filepath} not found, skipping.")
             continue
 
         content = path.read_text()
-        new_content = re.sub(pattern, replacement, content, flags=re.MULTILINE)
-        path.write_text(new_content)
-        echo(f"Updated {filepath}")
+        new_content = content
+        for pattern, replacement in patterns:
+            new_content = re.sub(pattern, replacement, new_content, flags=re.MULTILINE)
+
+        if new_content != content:
+            path.write_text(new_content)
+            echo(f"Updated {filepath}")
 
     echo("Project initialization complete.")
 

@@ -52,20 +52,12 @@ run = "uv lock --upgrade"
 [tasks.lint]
 description = "Lint and format code"
 alias = "l"
-run = [
-    "uv run ruff check --fix",
-    "uv run ruff format",
-    # "uv run pyright",
-]
+run = "uv run sh -c 'ruff check --fix && ruff format'"
 
 [tasks.test]
 description = "Run tests with coverage"
 alias = "t"
-run = [
-    "uv run coverage run -m pytest .",
-    "uv run coverage report -m",
-    "uv run coverage xml",
-]
+run = "uv run sh -c 'coverage run -m pytest . && coverage report -m && coverage xml'"
 
 [tasks.all]
 description = "Full setup from scratch"
