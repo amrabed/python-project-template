@@ -13,11 +13,26 @@ from click import ClickException, UsageError, command, echo, option
 @option("--email", required=True, help="Author email")
 @option("--github", required=True, help="GitHub username")
 def main(name: str, description: str, author: str, email: str, github: str):
-    # Validate name to prevent directory traversal or other injection
+    # Validate inputs to prevent configuration injection
+    for label, value in [
+        ("name", name),
+        ("description", description),
+        ("author", author),
+        ("email", email),
+        ("github", github),
+    ]:
+        if "\n" in value or "\r" in value:
+            raise UsageError(f"Invalid {label}: newlines are not allowed.")
+        if label != "description" and '"' in value:
+            raise UsageError(f"Invalid {label}: double quotes are not allowed.")
+
     if not re.match(r"^[a-zA-Z0-9_-]+$", name):
         raise UsageError(
             f"Invalid project name '{name}'. Only alphanumeric characters, dashes, and underscores are allowed."
         )
+
+    # Sanitize description for TOML double-quoted strings
+    description = description.replace('"', '\\"')
 
     source = name.replace("-", "_").lower()
 
@@ -51,7 +66,8 @@ def main(name: str, description: str, author: str, email: str, github: str):
             continue
 
         content = path.read_text()
-        new_content = re.sub(pattern, replacement, content, flags=re.MULTILINE)
+        # Use a lambda for replacement to avoid regex backreference injection
+        new_content = re.sub(pattern, lambda _: replacement, content, flags=re.MULTILINE)
         path.write_text(new_content)
         echo(f"Updated {filepath}")
 
