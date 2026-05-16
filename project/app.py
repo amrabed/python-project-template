@@ -1,8 +1,15 @@
-from click import command, option
+from click import command, option, secho, version_option
 
 
-@command(context_settings={"help_option_names": ["-h", "--help"]}, help="Say hello")
-@option("-n", "--name", default="World", help="Name", show_default=True)
+@command(context_settings={"help_option_names": ["-h", "--help"]}, help="Say hello to a user.")
+@option(
+    "-n",
+    "--name",
+    default="World",
+    help="The name of the person to greet.",
+    show_default=True,
+)
+@version_option()
 def main(name: str = "World"):
     """
     Say hello to the given name.
@@ -10,7 +17,7 @@ def main(name: str = "World"):
     Args:
       name: the name to be greeted
     """
-    print(f"Hello {name}!")
+    secho(f"Hello {name}! 👋", fg="green", bold=True)
 
 
 if __name__ == "__main__":
