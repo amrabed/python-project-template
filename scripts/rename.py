@@ -1,7 +1,6 @@
 import os
 import re
 import shutil
-from collections import defaultdict
 from pathlib import Path
 
 from click import ClickException, UsageError, command, echo, option
@@ -14,26 +13,11 @@ from click import ClickException, UsageError, command, echo, option
 @option("--email", required=True, help="Author email")
 @option("--github", required=True, help="GitHub username")
 def main(name: str, description: str, author: str, email: str, github: str):
-    # Validate inputs to prevent configuration injection
-    for label, value in [
-        ("name", name),
-        ("description", description),
-        ("author", author),
-        ("email", email),
-        ("github", github),
-    ]:
-        if "\n" in value or "\r" in value:
-            raise UsageError(f"Invalid {label}: newlines are not allowed.")
-        if label != "description" and '"' in value:
-            raise UsageError(f"Invalid {label}: double quotes are not allowed.")
-
+    # Validate name to prevent directory traversal or other injection
     if not re.match(r"^[a-zA-Z0-9_-]+$", name):
         raise UsageError(
             f"Invalid project name '{name}'. Only alphanumeric characters, dashes, and underscores are allowed."
         )
-
-    # Sanitize description for TOML double-quoted strings
-    description = description.replace('"', '\\"')
 
     source = name.replace("-", "_").lower()
 
@@ -46,7 +30,7 @@ def main(name: str, description: str, author: str, email: str, github: str):
         raise ClickException(f"Error: Neither 'project' nor '{source}' directory found.")
 
     # 2. File modifications
-    replacements_list = [
+    replacements = [
         ("docs/reference/app.md", r"^::: project\.app", f"::: {source}.app"),
         ("mkdocs.yml", r"^repo_name: .*", f"repo_name: {github}/{name}"),
         ("mkdocs.yml", r"^repo_url: .*", f"repo_url: https://github.com/{github}/{name}"),
@@ -60,25 +44,16 @@ def main(name: str, description: str, author: str, email: str, github: str):
         (".github/FUNDING.yml", r"^github: \[.*\]", f"github: [{github}]"),
     ]
 
-    # Group replacements by file to minimize I/O
-    file_replacements = defaultdict(list)
-    for filepath, pattern, replacement in replacements_list:
-        file_replacements[filepath].append((pattern, replacement))
-
-    for filepath, patterns in file_replacements.items():
+    for filepath, pattern, replacement in replacements:
         path = Path(filepath)
         if not path.exists():
             echo(f"Warning: File {filepath} not found, skipping.")
             continue
 
         content = path.read_text()
-        new_content = content
-        for pattern, replacement in patterns:
-            new_content = re.sub(pattern, lambda _: replacement, new_content, flags=re.MULTILINE)
-
-        if new_content != content:
-            path.write_text(new_content)
-            echo(f"Updated {filepath}")
+        new_content = re.sub(pattern, replacement, content, flags=re.MULTILINE)
+        path.write_text(new_content)
+        echo(f"Updated {filepath}")
 
     echo("Project initialization complete.")
 

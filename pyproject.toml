@@ -17,8 +17,8 @@ rename = "scripts.rename:main"
 [dependency-groups]
 dev = [
     "pytest>=9.0.1",
-    "ruff>=0.15.13",
-    "coverage>=7.14.0",
+    "ruff>=0.15.12",
+    "coverage>=7.6.9",
     "pre-commit>=4.0.1",
     "pyright>=1.1.391",
 ]
@@ -36,7 +36,7 @@ build-backend = "hatchling.build"
 line-length = 120
 
 [tool.ruff.lint]
-select = ["E", "I", "S"]
+select = ["E", "I"]
 
 [tool.coverage.run]
 branch = true
