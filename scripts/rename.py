@@ -74,7 +74,7 @@ def main(name: str, description: str, author: str, email: str, github: str):
         content = path.read_text()
         new_content = content
         for pattern, replacement in patterns:
-          new_content = re.sub(pattern, lambda _: replacement, content, flags=re.MULTILINE)
+            new_content = re.sub(pattern, lambda _: replacement, content, flags=re.MULTILINE)
 
         if new_content != content:
             path.write_text(new_content)
