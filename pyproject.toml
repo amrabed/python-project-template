@@ -36,7 +36,7 @@ build-backend = "hatchling.build"
 line-length = 120
 
 [tool.ruff.lint]
-select = ["E", "I"]
+select = ["E", "I", "S"]
 
 [tool.coverage.run]
 branch = true
