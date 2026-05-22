@@ -1,26 +1,30 @@
-FROM python:3.14-alpine
+# Stage 1: Build stage
+FROM python:3.14-alpine AS build
 
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-# Set environment variables
+# Enable bytecode compilation for faster startup
 ENV UV_COMPILE_BYTECODE=1
-ENV PATH="/code/.venv/bin:$PATH"
 
-# Set working directory
 WORKDIR /code
+
+# Install dependencies first to leverage Docker layer caching
 COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-install-project
+RUN uv sync --frozen --no-install-project --no-dev
 
-# Copy the rest of the application
+# Install the project itself
 COPY . .
-
-# Sync dependencies (frozen and no-dev for production)
 RUN uv sync --frozen --no-dev
 
-# Create a non-root user and change ownership
-RUN adduser -D appuser && chown -R appuser:appuser /code
-USER appuser
+# Stage 2: Runtime stage
+FROM python:3.14-alpine AS runtime
 
-# Run the application directly
+RUN adduser -D appuser
+WORKDIR /code
+
+COPY --from=build --chown=appuser:appuser /code /code
+
+ENV PATH="/code/.venv/bin:$PATH"
+USER appuser
 ENTRYPOINT ["app"]
