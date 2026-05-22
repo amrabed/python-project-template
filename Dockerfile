@@ -9,8 +9,10 @@ ENV PATH="/code/.venv/bin:$PATH"
 
 # Set working directory
 WORKDIR /code
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-install-project
 
-# Copy project files
+# Copy the rest of the application
 COPY . .
 
 # Sync dependencies (frozen and no-dev for production)
@@ -18,8 +20,6 @@ RUN uv sync --frozen --no-dev
 
 # Create a non-root user and change ownership
 RUN adduser -D appuser && chown -R appuser:appuser /code
-
-# Switch to non-root user
 USER appuser
 
 # Run the application directly
