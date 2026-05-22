@@ -34,7 +34,7 @@ depends = ["precommit", "install"]
 
 [tasks.precommit]
 description = "Install pre-commit hooks"
-run = "uv run pre-commit autoupdate && uv run pre-commit install"
+run = "pre-commit autoupdate && pre-commit install"
 
 [tasks.install]
 description = "Install dependencies"
@@ -52,12 +52,12 @@ run = "uv lock --upgrade"
 [tasks.lint]
 description = "Lint and format code"
 alias = "l"
-run = "uv run sh -c 'ruff check --fix . && ruff format .'"
+run = "ruff check --fix . && ruff format ."
 
 [tasks.test]
 description = "Run tests with coverage"
 alias = "t"
-run = "uv run sh -c 'coverage run -m pytest . && coverage report -m && coverage xml'"
+run = "coverage run -m pytest . && coverage report -m && coverage xml"
 
 [tasks.all]
 description = "Full setup from scratch"
@@ -73,25 +73,25 @@ hide = true
 [tasks.docs]
 description = "Build and deploy documentation to GitHub pages"
 depends = ["install-docs"]
-run = "uv run mkdocs gh-deploy --force"
+run = "mkdocs gh-deploy --force"
 
 [tasks.local-docs]
 description = "Serve documentation on a local server"
 alias = "d"
 depends = ["install-docs"]
-run = "uv run mkdocs serve"
+run = "mkdocs serve"
 
 ###### Scripts ######
 
 [tasks.app]
 description = "Run the app"
 alias = "a"
-run = "uv run app"
+run = "app"
 
 [tasks.rename]
 description = "Rename project (run once)"
 alias = "r"
-run = "uv run rename"
+run = "rename"
 
 [tasks.project]
 alias = ["rename", "p"]
