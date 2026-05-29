@@ -1,13 +1,18 @@
 from click import command, option, secho, version_option
 
 
-@command(context_settings={"help_option_names": ["-h", "--help"]}, help="Say hello to a user.")
+@command(
+    context_settings={"help_option_names": ["-h", "--help"]},
+    help="Say hello to a user.",
+    epilog="Example: app --name Alice",
+)
 @option(
     "-n",
     "--name",
     default="World",
     help="The name of the person to greet.",
     show_default=True,
+    metavar="<name>",
 )
 @version_option()
 def main(name: str = "World"):
