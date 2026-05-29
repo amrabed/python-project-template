@@ -17,8 +17,8 @@ rename = "scripts.rename:main"
 [dependency-groups]
 dev = [
     "pytest>=9.0.1",
-    "ruff>=0.15.13",
-    "coverage>=7.14.0",
+    "ruff>=0.15.15",
+    "coverage>=7.14.1",
     "pre-commit>=4.0.1",
     "pyright>=1.1.391",
 ]
