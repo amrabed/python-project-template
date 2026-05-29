@@ -21,8 +21,10 @@ def main(name: str, description: str, author: str, email: str, github: str):
         ("email", email),
         ("github", github),
     ]:
-        if "\n" in value or "\r" in value:
-            raise UsageError(f"Invalid {label}: newlines are not allowed.")
+        if len(value) > 100:
+            raise UsageError(f"Invalid {label}: maximum length is 100 characters.")
+        if any(c < " " for c in value):
+            raise UsageError(f"Invalid {label}: control characters are not allowed.")
         if label != "description" and '"' in value:
             raise UsageError(f"Invalid {label}: double quotes are not allowed.")
 
@@ -31,8 +33,19 @@ def main(name: str, description: str, author: str, email: str, github: str):
             f"Invalid project name '{name}'. Only alphanumeric characters, dashes, and underscores are allowed."
         )
 
-    # Sanitize description for TOML double-quoted strings
-    description = description.replace('"', '\\"')
+    if not re.match(r"^[a-zA-Z0-9-]+$", github):
+        raise UsageError(f"Invalid GitHub username '{github}'. Only alphanumeric characters and dashes are allowed.")
+
+    if not re.match(r"^[^@]+@[^@]+\.[^@]+$", email):
+        raise UsageError(f"Invalid email address '{email}'.")
+
+    # Sanitize for TOML double-quoted strings (escape backslashes and double quotes)
+    def toml_escape(s: str) -> str:
+        return s.replace("\\", "\\\\").replace('"', '\\"')
+
+    description = toml_escape(description)
+    author = toml_escape(author)
+    email = toml_escape(email)
 
     source = name.replace("-", "_").lower()
 
