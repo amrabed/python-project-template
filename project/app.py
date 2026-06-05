@@ -1,4 +1,4 @@
-from click import command, option, secho, version_option
+from click import UsageError, command, option, secho, version_option
 
 
 @command(
@@ -22,6 +22,11 @@ def main(name: str = "World"):
     Args:
       name: the name to be greeted
     """
+    if len(name) > 100:
+        raise UsageError("Invalid name: maximum length is 100 characters.")
+    if any(c < " " for c in name):
+        raise UsageError("Invalid name: control characters are not allowed.")
+
     secho(f"Hello {name}! 👋", fg="green", bold=True)
 
 
