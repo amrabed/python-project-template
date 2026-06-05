@@ -42,17 +42,22 @@ Click this button to create a new repository for your project, then clone the ne
 ### Rename the project
 After cloning the repository, rename the project by running:
 ```bash
-mise run project --name "" --description "" --author "" --email "" --github ""
+mise run project
 ```
-Pass the following parameters:
+The script will interactively prompt you for the following details, with smart defaults based on your environment:
 
 Parameter | Description
 --- | ---
-`name` | Project new name
+`name` | Project new name (defaults to current directory name)
 `description` | Project short description
-`author` | Author name
-`email`| Author email
+`author` | Author name (defaults to `git config user.name`)
+`email`| Author email (defaults to `git config user.email`)
 `github`| GitHub username (for GitHub funding)
+
+You can also pass these as flags:
+```bash
+mise run project --name "my-project" --description "A cool project" --author "Alice" --email "alice@example.com" --github "alice"
+```
 
 
 ## Prerequisites
@@ -104,11 +109,14 @@ Try running `mise run app -- -h` or `mise run app -- --help` to get the help mes
 ```bash
 Usage: app [OPTIONS]
 
-  Say hello
+  Say hello to a user.
 
 Options:
-  -n, --name TEXT  Name  [default: World]
-  -h, --help       Show this message and exit.
+  -n, --name <name>  The name of the person to greet.  [default: World]
+  -V, --version      Show the version and exit.
+  -h, --help         Show this message and exit.
+
+  Example: app --name Alice
 ```
 
 ### Docker
