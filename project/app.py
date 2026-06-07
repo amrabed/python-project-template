@@ -2,6 +2,7 @@ from click import UsageError, command, option, secho, version_option
 
 
 @command(
+    name="app",
     context_settings={"help_option_names": ["-h", "--help"]},
     help="Say hello to a user.",
     epilog="Example: app --name Alice",
@@ -14,7 +15,7 @@ from click import UsageError, command, option, secho, version_option
     show_default=True,
     metavar="<name>",
 )
-@version_option()
+@version_option(None, "-V", "--version")
 def main(name: str = "World"):
     """
     Say hello to the given name.
