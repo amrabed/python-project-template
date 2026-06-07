@@ -16,3 +16,17 @@ def test_greet():
     result = runner.invoke(main, ["--name", "Jules"])
     assert result.exit_code == 0
     assert "Hello Jules! 👋" in result.output
+
+
+def test_name_too_long():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--name", "A" * 101])
+    assert result.exit_code != 0
+    assert "maximum length is 100 characters" in result.output
+
+
+def test_name_control_characters():
+    runner = CliRunner()
+    result = runner.invoke(main, ["--name", "Injected\x1b[31mRed\x1b[0m"])
+    assert result.exit_code != 0
+    assert "control characters are not allowed" in result.output
